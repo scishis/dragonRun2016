@@ -1,28 +1,26 @@
 <head>
-  <title>HIS Charity Dragon Run 2016</title>
+    <title>HIS Charity Dragon Run 2016</title>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
 </head>
 
 
 
-<template name = "main">
+<template name="main">
 
-{{>header}}
-<div class = "container mainContentSpace">
-</div>
-{{>yield}}
-
-{{>footer}}
+    {{>header}}
+    <div class="container mainContentSpace">
+    </div>
+    {{>yield}} {{>footer}}
 
 </template>
 
-<template name = "footer">
+<template name="footer">
 
-    <nav class="navbar navbar-default navbar-fixed-bottom HISGoldSolid " id = "site-footer">
+    <nav class="navbar navbar-default navbar-fixed-bottom HISGoldSolid " id="site-footer">
 
-  <p class = "text-center small">
-      <b>Site built by <a href = "http://www.evanweinberg.com">Evan Weinberg</a>, 2016</b>
-    </p>
+        <p class="text-center small">
+            <b>Site built by <a href = "http://www.evanweinberg.com">Evan Weinberg</a>, 2016</b>
+        </p>
 
     </nav>
 
@@ -32,31 +30,31 @@
 
 
 
-<template name = "header">
-<nav class="navbar navbar-default HISGoldSolid" id = "site-header">
+<template name="header">
+    <nav class="navbar navbar-default HISGoldSolid" id="site-header">
         <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/portal/" id = "brand-link"><strong>HIS Charity Run 2016</strong></a>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/portal/" id="brand-link"><strong>HIS Charity Run 2016</strong></a>
 
 
-             <span class = "navbar-brand" >
+                <span class="navbar-brand">
                  {{#if currentUser}}
                    <a href = "/"><button class = "btn" id = "sign-out">Sign Out</button></a>
                  {{/if}}
               </span>
 
-          </div>
-          <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
 
 
-              <!--
+                    <!--
               <li class = "dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Information<span class="caret"></span></a>
                <ul class = "dropdown-menu" role = "menu">
@@ -66,287 +64,377 @@
               </li>
               -->
 
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Register/注册 <span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                  <!--<li><a href="/registration/">Register a Runner</a></li>-->
-                  <li><a href="/portal/">See My Registrations/察看注册情况</a></li>
-                    {{#if isStaffUser}}
-                    <li><a href = "/registration/list/">Registration List</a></li>
-                    <li><a href="/registrationSummary/">Registration Summary</a></li>
-                    <li><a href="/payment/">Process Payment</a></li>
-                    <li><a href = "/registration/pickup/">Bag Pick-up Search</a></li>
-                    {{/if}}
-                    {{#if isWechatUser}}
-                    <li><a href="/payment/wechat/">WeChat Payments</a></li>
-                    {{/if}}
-                  </ul>
-              </li>
-                {{#if isAdminUser}}
-                <li class = "dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin<span class="caret"></span></a>
-                <ul class = "dropdown-menu" role = "menu">
-               <li><a href="/admin/">User Panel</a></li>
-                <li><a href="/raceCOnfiguration/">Race Config</a></li>
-                <li><a href="/admin/event">Event Config</a></li>
-
-                <li><a href="/officialRaceTime/">Race Clock</a></li>
-                </ul>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Register/注册 <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <!--<li><a href="/registration/">Register a Runner</a></li>-->
+                            <li><a href="/portal/">See My Registrations/察看注册情况</a></li>
+                            {{#if isStaffUser}}
+                            <li><a href="/registration/list/">Registration List</a></li>
+                            <li><a href="/registrationSummary/">Registration Summary</a></li>
+                            <li><a href="/payment/">Process Payment</a></li>
+                            <li><a href="/registration/pickup/">Bag Pick-up Search</a></li>
+                            {{/if}} {{#if isWechatUser}}
+                            <li><a href="/payment/wechat/">WeChat Payments</a></li>
+                            {{/if}}
+                        </ul>
                     </li>
-                {{/if}}
-            </ul>
+                    {{#if isAdminUser}}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="/admin/">User Panel</a></li>
+                            <li><a href="/raceCOnfiguration/">Race Config</a></li>
+                            <li><a href="/admin/event">Event Config</a></li>
+
+                            <li><a href="/officialRaceTime/">Race Clock</a></li>
+                        </ul>
+                    </li>
+                    {{/if}}
+                </ul>
 
 
-          </div><!--/.nav-collapse -->
+            </div>
+            <!--/.nav-collapse -->
 
-        </div><!--/.container-fluid -->
-      </nav>
+        </div>
+        <!--/.container-fluid -->
+    </nav>
 
 
 
 </template>
 
-<template name = "aboutPage">
+<template name="aboutPage">
 
-<div class = "row">
-<div class = "col-md-12 gray-bg text-center">
-<h4>Event Host:</h4>
- <a href = "http://hz.scis-his.net">Hangzhou International School </a>
-</div>
+    <div class="row">
+        <div class="col-md-12 gray-bg text-center">
+            <h4>Event Host:</h4>
+            <a href="http://hz.scis-his.net">Hangzhou International School </a>
+        </div>
 
-</div>
+    </div>
 
-<div class = "row">
-<div class = "col-md-12 gray-bg text-center">
-<h4>Official Event Charities:</h4>
- <div class = "row">
- <div class = "col-md-3 col-md-offset-3 text-center">
-  <span class = "text-info">Carnations School</span>
-  <img src = "/carnationlogo.jpg" class="img-responsive img-rounded">
- </div>
- <div class = "col-md-3">
-  <span class = "text-info">Red Cross</span>
-<p class = "text-center">
- <center><img src = "/redcross-logo.jpg" class="img-responsive img-rounded"> </center>
-    </p>
- </div>
- </div>
+    <div class="row">
+        <div class="col-md-12 gray-bg text-center">
+            <h4>Official Event Charities:</h4>
+            <div class="row">
+                <div class="col-md-3 col-md-offset-3 text-center">
+                    <span class="text-info">Carnations School</span>
+                    <img src="/carnationlogo.jpg" class="img-responsive img-rounded">
+                </div>
+                <div class="col-md-3">
+                    <span class="text-info">Red Cross</span>
+                    <p class="text-center">
+                        <center><img src="/redcross-logo.jpg" class="img-responsive img-rounded"> </center>
+                    </p>
+                </div>
+            </div>
 
-</div>
+        </div>
 
-</div>
+    </div>
 
     {{>sponsorsbanner}}
 </template>
 
-<template name = "raceDayInformation">
-    {{>raceDaySchedule}}
-    {{>raceRouteInformation}}
+<template name="raceDayInformation">
+    {{>raceDaySchedule}} {{>raceRouteInformation}}
 </template>
 
 
 
 
-<template name = "registrationListDeleteEnabled">
+<template name="registrationListDeleteEnabled">
 
-<div id = "registrationList">
-    Total Registered: {{numberRegistered}} <p></p>
-    <a href = "/unpaidRunnerEmailList/">Not Paid ({{numberUnpaid}}):</a>
-    <table>
-    {{#each notPaidRunners}}
-    <tr><td>
-    <a href = "/registrationConfirmation/{{_id}}/{{runnerRegistrationCode}}/">{{runnerFirstName}} {{runnerLastName}} - {{runnerRegistrationCode}} </a><button class = "deleteRunner"></button>
-    </td>
-    </tr>
+    <div id="registrationList">
+        Total Registered: {{numberRegistered}}
+        <p></p>
+        <a href="/unpaidRunnerEmailList/">Not Paid ({{numberUnpaid}}):</a>
+        <table>
+            {{#each notPaidRunners}}
+            <tr>
+                <td>
+                    <a href="/registrationConfirmation/{{_id}}/{{runnerRegistrationCode}}/">{{runnerFirstName}} {{runnerLastName}} - {{runnerRegistrationCode}} </a>
+                    <button class="deleteRunner"></button>
+                </td>
+            </tr>
 
-    {{/each}}
-    </table>
-    Paid ({{numberPaid}}):
-    <table>
-    {{#each paidRunners}}
-     <tr><td>
-    <a href = "/registrationConfirmation/{{_id}}/{{runnerRegistrationCode}}/">{{runnerFirstName}} {{runnerLastName}} - {{runnerRegistrationCode}} </a>
-    </td>
-    </tr>
-    {{/each}}
-    </table>
-</div>
-
-
-</template>
-
-
-
-<template name = "unpaidRunnerEmailList">
-
-    {{#each unpaidRunner}}
-   {{runnerEmail}},
-    {{/each}}
-
-
-</template>
-
-<template name = "runnerRegistrationSummary">
-<div class = "container HISGoldSolid">
-<div class = "row">
-  <div class = "col-md-4">
-<h1>Total Numbers:</h1>
-<table>
-<tr><td></td><td>Paid</td><td>Unpaid</td><td>Total</td></tr>
-<tr><td>5K Men</td><td>{{totalMenPaid}}</td><td>{{totalMenUnpaid}}</td><td>{{totalMen}}</td></tr>
-<tr><td>5K Women</td><td>{{totalWomenPaid}}</td><td>{{totalWomenUnpaid}}</td><td>{{totalWomen}}</td></tr>
-<tr><td>1K All</td><td>{{total1KPaid}}</td><td>{{total1KUnpaid}}</td><td>{{total1K}}</td></tr>
-
-</table>
-</div>
-
-
-
-  <div class = "col-md-4">
-<h1>5K T-shirts (Paid):</h1>
-<table>
-<tr><td>T-shirt Size</td><td>Number of Shirts</td></tr>
-<tr><td>110</td><td>{{num5K110}}</td></tr>
-<tr><td>120</td><td>{{num5K120}}</td></tr>
-<tr><td>130</td><td>{{num5K130}}</td></tr>
-<tr><td>XS</td><td>{{num5KXS}}</td></tr>
-<tr><td>S</td><td>{{num5KS}}</td></tr>
-<tr><td>M</td><td>{{num5KM}}</td></tr>
-<tr><td>L</td><td>{{num5KL}}</td></tr>
-<tr><td>XL</td><td>{{num5KXL}}</td></tr>
-<tr><td>XXL</td><td>{{num5KXXL}}</td></tr>
-</table>
-</div>
-
-
-
-  <div class = "col-md-4">
-<h1>Fun Run T-shirts (Paid):</h1>
-<table>
-<tr><td>T-shirt Size</td><td>Number of Shirts</td></tr>
-<tr><td>110</td><td>{{num1K110}}</td></tr>
-<tr><td>120</td><td>{{num1K120}}</td></tr>
-<tr><td>130</td><td>{{num1K130}}</td></tr>
-<tr><td>XS</td><td>{{num1KXS}}</td></tr>
-<tr><td>S</td><td>{{num1KS}}</td></tr>
-<tr><td>M</td><td>{{num1KM}}</td></tr>
-<tr><td>L</td><td>{{num1KL}}</td></tr>
-<tr><td>XL</td><td>{{num1KXL}}</td></tr>
-<tr><td>XXL</td><td>{{num1KXXL}}</td></tr>
-</table>
-
-</div>
-</div>
-<hr/>
-<div class = "row">
-<div class = "col-md-4">
-  These are the email addresses of users that have not registered any runners: <br>
-  <textarea>
-    {{usersWithNoRegisteredRunners}}
-  </textarea>
-</div>
-<div class = "col-md-4">
-  These are the email addresses of all <u>users</u> that have registered runners, but haven't paid: <br>
-  <textarea>
-    {{usersWithUnpaidRunners}}
-  </textarea>
-</div>
-<div class = "col-md-4">
-  These are the email addresses of users that have registered runners and have paid: <br>
-  <textarea>
-    {{usersWithAllRunnersPaid}}
-  </textarea>
-</div>
-</div>
-<hr/>
-<div class = "row">
-<div class = "col-md-4">
-  These are the email addresses of all users that have registered runners for <u>either</u> the Dragon Run or the Fun Run:<br>
-  <textarea>
-    {{usersRegisteredRunnersAllEvents}}
-  </textarea>
-</div>
-<div class = "col-md-4">
-  These are the email addresses of all users that have registered and paid for runners in the Dragon Run:<br>
-  <textarea>
-    {{usersRegisteredRunnersDragonRun}}
-  </textarea>
-</div>
-<div class = "col-md-4">
-  These are the email addresses of all users that have registered and paid for runners in the Fun Run: <br>
-  <textarea>
-    {{usersRegisteredRunnersFunRun}}
-  </textarea>
-</div>
-</div>
-
-</div>
-
-
+            {{/each}}
+        </table>
+        Paid ({{numberPaid}}):
+        <table>
+            {{#each paidRunners}}
+            <tr>
+                <td>
+                    <a href="/registrationConfirmation/{{_id}}/{{runnerRegistrationCode}}/">{{runnerFirstName}} {{runnerLastName}} - {{runnerRegistrationCode}} </a>
+                </td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
 
 
 </template>
 
 
 
-<template name = "emergencyContactList">
-<div class = "resultsList">
-    <p class = "centerText">All Runners - Emergency Contact Information</p>
-    <table class = "resultsTable">
-    <tr><td>Number</td><td>Runner Name</td><td>Emergency Contact Name</td><td>Emergency Contact Phone</td>
-    </tr>
-    {{#each runners}}
-     <tr><td>{{runnerBibNumber}}</td><td>{{runnerFirstName}} {{runnerLastName}}</td> <td>{{runnerEmergencyName}}</td><td>{{runnerEmergencyPhone}}</td>
-    </tr>
-    {{/each}}
-    </table>
-</div>
+<template name="unpaidRunnerEmailList">
+
+    {{#each unpaidRunner}} {{runnerEmail}}, {{/each}}
+
+
+</template>
+
+<template name="runnerRegistrationSummary">
+    <div class="container HISGoldSolid">
+        <div class="row">
+            <div class="col-md-4">
+                <h1>Total Numbers:</h1>
+                <table>
+                    <tr>
+                        <td></td>
+                        <td>Paid</td>
+                        <td>Unpaid</td>
+                        <td>Total</td>
+                    </tr>
+                    <tr>
+                        <td>5K Men</td>
+                        <td>{{totalMenPaid}}</td>
+                        <td>{{totalMenUnpaid}}</td>
+                        <td>{{totalMen}}</td>
+                    </tr>
+                    <tr>
+                        <td>5K Women</td>
+                        <td>{{totalWomenPaid}}</td>
+                        <td>{{totalWomenUnpaid}}</td>
+                        <td>{{totalWomen}}</td>
+                    </tr>
+                    <tr>
+                        <td>1K All</td>
+                        <td>{{total1KPaid}}</td>
+                        <td>{{total1KUnpaid}}</td>
+                        <td>{{total1K}}</td>
+                    </tr>
+
+                </table>
+            </div>
+
+
+
+            <div class="col-md-4">
+                <h1>5K T-shirts (Paid):</h1>
+                <table>
+                    <tr>
+                        <td>T-shirt Size</td>
+                        <td>Number of Shirts</td>
+                    </tr>
+                    <tr>
+                        <td>110</td>
+                        <td>{{num5K110}}</td>
+                    </tr>
+                    <tr>
+                        <td>120</td>
+                        <td>{{num5K120}}</td>
+                    </tr>
+                    <tr>
+                        <td>130</td>
+                        <td>{{num5K130}}</td>
+                    </tr>
+                    <tr>
+                        <td>XS</td>
+                        <td>{{num5KXS}}</td>
+                    </tr>
+                    <tr>
+                        <td>S</td>
+                        <td>{{num5KS}}</td>
+                    </tr>
+                    <tr>
+                        <td>M</td>
+                        <td>{{num5KM}}</td>
+                    </tr>
+                    <tr>
+                        <td>L</td>
+                        <td>{{num5KL}}</td>
+                    </tr>
+                    <tr>
+                        <td>XL</td>
+                        <td>{{num5KXL}}</td>
+                    </tr>
+                    <tr>
+                        <td>XXL</td>
+                        <td>{{num5KXXL}}</td>
+                    </tr>
+                </table>
+            </div>
+
+
+
+            <div class="col-md-4">
+                <h1>Fun Run T-shirts (Paid):</h1>
+                <table>
+                    <tr>
+                        <td>T-shirt Size</td>
+                        <td>Number of Shirts</td>
+                    </tr>
+                    <tr>
+                        <td>110</td>
+                        <td>{{num1K110}}</td>
+                    </tr>
+                    <tr>
+                        <td>120</td>
+                        <td>{{num1K120}}</td>
+                    </tr>
+                    <tr>
+                        <td>130</td>
+                        <td>{{num1K130}}</td>
+                    </tr>
+                    <tr>
+                        <td>XS</td>
+                        <td>{{num1KXS}}</td>
+                    </tr>
+                    <tr>
+                        <td>S</td>
+                        <td>{{num1KS}}</td>
+                    </tr>
+                    <tr>
+                        <td>M</td>
+                        <td>{{num1KM}}</td>
+                    </tr>
+                    <tr>
+                        <td>L</td>
+                        <td>{{num1KL}}</td>
+                    </tr>
+                    <tr>
+                        <td>XL</td>
+                        <td>{{num1KXL}}</td>
+                    </tr>
+                    <tr>
+                        <td>XXL</td>
+                        <td>{{num1KXXL}}</td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-md-4">
+                These are the email addresses of users that have not registered any runners:
+                <br>
+                <textarea>
+                    {{usersWithNoRegisteredRunners}}
+                </textarea>
+            </div>
+            <div class="col-md-4">
+                These are the email addresses of all <u>users</u> that have registered runners, but haven't paid:
+                <br>
+                <textarea>
+                    {{usersWithUnpaidRunners}}
+                </textarea>
+            </div>
+            <div class="col-md-4">
+                These are the email addresses of users that have registered runners and have paid:
+                <br>
+                <textarea>
+                    {{usersWithAllRunnersPaid}}
+                </textarea>
+            </div>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-md-4">
+                These are the email addresses of all users that have registered runners for <u>either</u> the Dragon Run or the Fun Run:
+                <br>
+                <textarea>
+                    {{usersRegisteredRunnersAllEvents}}
+                </textarea>
+            </div>
+            <div class="col-md-4">
+                These are the email addresses of all users that have registered and paid for runners in the Dragon Run:
+                <br>
+                <textarea>
+                    {{usersRegisteredRunnersDragonRun}}
+                </textarea>
+            </div>
+            <div class="col-md-4">
+                These are the email addresses of all users that have registered and paid for runners in the Fun Run:
+                <br>
+                <textarea>
+                    {{usersRegisteredRunnersFunRun}}
+                </textarea>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
 </template>
 
 
-<template name = "loading">
-<div id = "loading">
-<h3>Please wait...</h3>
-{{>spinner}}
-</div>
+
+<template name="emergencyContactList">
+    <div class="resultsList">
+        <p class="centerText">All Runners - Emergency Contact Information</p>
+        <table class="resultsTable">
+            <tr>
+                <td>Number</td>
+                <td>Runner Name</td>
+                <td>Emergency Contact Name</td>
+                <td>Emergency Contact Phone</td>
+            </tr>
+            {{#each runners}}
+            <tr>
+                <td>{{runnerBibNumber}}</td>
+                <td>{{runnerFirstName}} {{runnerLastName}}</td>
+                <td>{{runnerEmergencyName}}</td>
+                <td>{{runnerEmergencyPhone}}</td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
 </template>
 
-<template name = "loginForm">
-<div id = "loggingIn">
 
-     <input type="text" class = "textInput" id="inputUsername" placeholder="Username">
-     <input type="password" id="inputPassword" class = "textInput" placeholder="password"><br>
-     <button id = "loginButton" class = 'btn'>Log in</button>
+<template name="loading">
+    <div id="loading">
+        <h3>Please wait...</h3> {{>spinner}}
+    </div>
+</template>
 
-</div>
+<template name="loginForm">
+    <div id="loggingIn">
 
-    {{#unless IsLoggingIn}}
+        <input type="text" class="textInput" id="inputUsername" placeholder="Username">
+        <input type="password" id="inputPassword" class="textInput" placeholder="password">
+        <br>
+        <button id="loginButton" class='btn'>Log in</button>
 
-    {{/unless}}
+    </div>
 
-
- {{#if IsLoggingIn}}
-<p class = "text-center">Logging in...</p>
+    {{#unless IsLoggingIn}} {{/unless}} {{#if IsLoggingIn}}
+    <p class="text-center">Logging in...</p>
     {{/if}}
 
 </template>
 <template name="accessDenied">
-  You can't get here! Please log in.
+    You can't get here! Please log in.
 </template>
 
-<template name = "smallRaceTime">
-<div id = "smallRaceTime">
-{{#with raceTime}}
-    <h3 id = "smallRaceTimeBlock" class = "centerText"> <span id = "raceElapsedTime">{{minutes}}:{{seconds}}</span> <span id = "connectionIndicator" style="background:{{connection}}">O</span></h3>
-{{/with}}
-</div>
+<template name="smallRaceTime">
+    <div id="smallRaceTime">
+        {{#with raceTime}}
+        <h3 id="smallRaceTimeBlock" class="centerText"> <span id = "raceElapsedTime">{{minutes}}:{{seconds}}</span> <span id = "connectionIndicator" style="background:{{connection}}">O</span></h3> {{/with}}
+    </div>
 </template>
 
-<template name = "resetPwd">
-  <div class = "row">
-  <div class = "col-md-6 col-md-offset-3 HISGoldSolid jumbotron text-center">
-   {{> atForm state='forgotPwd'}}
-  </div>
-  </div>
+<template name="resetPwd">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 HISGoldSolid jumbotron text-center">
+            {{> atForm state='forgotPwd'}}
+        </div>
+    </div>
 
 </template>

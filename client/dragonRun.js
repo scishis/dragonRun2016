@@ -16,38 +16,24 @@ Meteor.subscribe("payments");
 Meteor.subscribe("users");
 
 Template.registerHelper('isAdminUser', function() {
-
     return Roles.userIsInRole(Meteor.user(), ['admin']);
-
 });
 Template.registerHelper('isStaffUser', function() {
-
     return Roles.userIsInRole(Meteor.user(), ['staff', 'admin']);
-
 });
 
 Template.registerHelper('isWechatUser', function() {
-
     return Roles.userIsInRole(Meteor.user(), ['wechat', 'admin']);
-
 });
-
 Template.loginForm.events({
-
     'click #loginButton': function(e) {
-        e.preventDefault()
+        e.preventDefault();
         var username = $('#inputUsername').val();
         var password = $('#inputPassword').val();
         var previousPath = Session.get('currentURL');
-
-
         Meteor.loginWithPassword(username, password, function() {
             Router.go(previousPath);
-
-
         });
-
-
     }
 
 
@@ -82,11 +68,11 @@ Template.raceConfiguration.helpers({
     raceIsStarted: function() {
         var raceStarted = systemVariables.findOne({
             name: "raceHasStarted"
-        })
+        });
         if (!raceStarted) {
             return false;
         }
-        return raceStarted.value
+        return raceStarted.value;
     },
     raceTime: function() {
         var currentTime = Session.get('time');
@@ -94,19 +80,19 @@ Template.raceConfiguration.helpers({
             name: "raceStartTime"
         });
         if (!raceStartTime) {
-            return 'not found'
+            return 'not found';
         }
         var elapsedTime = (currentTime - raceStartTime.value);
         minutes = Math.floor(elapsedTime / 60000);
-        seconds = Math.floor(((elapsedTime / 60000) - Math.floor(elapsedTime / 60000)) * 60)
+        seconds = Math.floor(((elapsedTime / 60000) - Math.floor(elapsedTime / 60000)) * 60);
         if (seconds <= 9) {
-            var secondString = '0' + seconds.toFixed(0).toString()
+            var secondString = '0' + seconds.toFixed(0).toString();
         }
         else {
             var secondString = seconds.toFixed(0).toString();
         }
         if (minutes < 9) {
-            var minuteString = '0' + minutes.toString()
+            var minuteString = '0' + minutes.toString();
         }
         else {
             var minuteString = minutes.toString();
@@ -132,11 +118,11 @@ Template.officialRaceTime.helpers({
             name: "raceStartTime"
         });
         if (!raceStartTime) {
-            return 'not found'
+            return 'not found';
         }
         var elapsedTime = (currentTime - raceStartTime.value);
         minutes = Math.floor(elapsedTime / 60000);
-        seconds = Math.floor(((elapsedTime / 60000) - Math.floor(elapsedTime / 60000)) * 60)
+        seconds = Math.floor(((elapsedTime / 60000) - Math.floor(elapsedTime / 60000)) * 60);
         if (seconds <= 9) {
             var secondString = '0' + seconds.toFixed(0).toString()
         }
@@ -144,7 +130,7 @@ Template.officialRaceTime.helpers({
             var secondString = seconds.toFixed(0).toString();
         }
         if (minutes < 9) {
-            var minuteString = '0' + minutes.toString()
+            var minuteString = '0' + minutes.toString();
         }
         else {
             var minuteString = minutes.toString();
@@ -166,10 +152,10 @@ Template.smallRaceTime.helpers({
     connection: function() {
 
         if (Meteor.status().status == 'connected') {
-            return "green"
+            return "green";
         }
         else {
-            return "red"
+            return "red";
         }
 
     }

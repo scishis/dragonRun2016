@@ -10,7 +10,7 @@ Template.header.events({
  },
  'change #selectLang': function(e) {
 
-  Session.set('selectedLanguage', $(e.target).val())
+  Session.set('selectedLanguage', $(e.target).val());
 
  }
 
@@ -124,7 +124,7 @@ Template.registrationForm.events({
    Runners.insert(registrationObject, function(error, result) {
 
     if (error == undefined) {
-     Session.equals("showSubmitButton", false)
+     Session.equals("showSubmitButton", false);
      $('#submitRegistration').html('Submit Registration');
      Router.go('/portal/');
      Session.set("registrationComplete", 'true');
@@ -188,7 +188,7 @@ Template.registrationForm.events({
 Template.registrationForm.onRendered(function() {
 
  Session.set("showSubmitButton", false);
- Session.set("selectedRace", '')
+ Session.set("selectedRace", '');
 });
 
 Template.selectRace.events({
@@ -197,10 +197,10 @@ Template.selectRace.events({
   e.stopPropagation();
   var selectedRace = $(e.currentTarget).html();
   if (selectedRace == "5K Dragon Run/5公里跑") {
-   selectedRace = "5K Dragon Run"
+   selectedRace = "5K Dragon Run";
   }
   if (selectedRace == "Fun Run/趣味跑") {
-   selectedRace = "Fun Run"
+   selectedRace = "Fun Run";
   }
   $('.raceSelect').removeClass('HISBlueSolid');
   $(e.currentTarget).addClass('HISBlueSolid');
@@ -311,7 +311,7 @@ Template.adminTemplate.events({
 
   var user = Meteor.users.findOne({
    "emails.0.address": email
-  })
+  });
   console.log(user);
   if (user) {
    var response = Meteor.call('sendVerifyEmail', user._id, function(error, result) {
@@ -321,7 +321,7 @@ Template.adminTemplate.events({
 
     }
 
-   })
+   });
   }
 
   else {
@@ -333,7 +333,7 @@ Template.adminTemplate.events({
 
  }
 
-})
+});
 
 Template.adminTemplate.helpers({
 
@@ -343,13 +343,13 @@ Template.adminTemplate.helpers({
 
  }
 
-})
+});
 
 Template.adminTemplate.onRendered(function() {
 
- Session.set('verifyEmailStatus', "")
+ Session.set('verifyEmailStatus', "");
 
-})
+});
 
 Template.paymentOptions.helpers({
  userWeChat: function() {
@@ -390,7 +390,7 @@ Template.registrationEdit.helpers({
  registrationTotal: function() {
   var thisRunner = Runners.findOne({
    _id: this._id
-  })
+  });
   return 100 + parseFloat(thisRunner.runnerAdditionalDonation);
  },
 
@@ -399,7 +399,7 @@ Template.registrationEdit.helpers({
    "emails.0.address": this.registrationEmail
   }).profile.wechat;
   if (wechat) {
-   return wechat
+   return wechat;
   }
   return null;
  }
@@ -424,7 +424,7 @@ Template.registrationEdit.events({
    runnerShirtSize: $('#registrationEditFormContent').find('[name=runnerShirtSize]').val(),
    reasonForRunning: $('#registrationEditFormContent').find('[name=reasonForRunning]').val(),
    superHeroQuestion: $('#registrationEditFormContent').find('[name=superHeroQuestion]').val()
-  }
+  };
   $('#updateRegistration').html('Submitting....');
   Runners.update({
    _id: this._id
@@ -437,7 +437,7 @@ Template.registrationEdit.events({
     $('#updateRegistration').html('Update Registration');
     Router.go('/portal/');
 
-   };
+   }
   });
 
  }
@@ -452,8 +452,8 @@ Template.registrationEdit.rendered = function() {
  $('#registrationEditFormContent').find('[name=runnerEstimatedTime]').val(this.data.runnerEstimatedTime);
  $('#registrationEditFormContent').find('[name=runnerShirtSize]').val(this.data.runnerShirtSize);
  $('#registrationEditFormContent').find('[name=runnerRaceSelected]').val(this.data.runnerRaceSelected);
- Session.set("funRunSelected", (this.data.runnerRaceSelected == 'Fun Run'))
-}
+ Session.set("funRunSelected", (this.data.runnerRaceSelected == 'Fun Run'));
+};
 
 Template.registrationEdit.helpers({
 
@@ -514,7 +514,7 @@ Template.registrationList.helpers({
    sort: {
     runnerPaidDate: -1
    }
-  }).fetch()
+  }).fetch();
   return runnersList;
  },
  notPaidRunners: function() {
@@ -524,7 +524,7 @@ Template.registrationList.helpers({
    sort: {
     registrationEmail: -1
    }
-  }).fetch()
+  }).fetch();
   return runnersList;
  },
  dateString: function() {
@@ -544,7 +544,7 @@ Template.registrationList.helpers({
 
   }
   else {
-   return 'notFound'
+   return 'notFound';
   }
 
 
@@ -586,7 +586,7 @@ Template.registrationListDeleteEnabled.helpers({
    sort: {
     runnerLastName: -1
    }
-  }).fetch()
+  }).fetch();
   return runnersList;
  },
  notPaidRunners: function() {
@@ -596,7 +596,7 @@ Template.registrationListDeleteEnabled.helpers({
    sort: {
     runnerLastName: -1
    }
-  }).fetch()
+  }).fetch();
   return runnersList;
  },
 
@@ -860,13 +860,13 @@ Template.runnerRegistrationSummary.helpers({
    if (Runners.find({
      registrationEmail: r.emails[0].address
     }).count() === 0) {
-    emails.push(r.emails[0].address)
+    emails.push(r.emails[0].address);
    }
-  })
-  var emailString = ""
+  });
+  var emailString = "";
   emails.forEach(function(e) {
-   emailString += (e + ", ")
-  })
+   emailString += (e + ", ");
+  });
   return emailString;
 
 
@@ -879,15 +879,15 @@ Template.runnerRegistrationSummary.helpers({
    runnerHasPaid: false
   }).forEach(function(r) {
    if (!_.contains(emails, r.registrationEmail)) {
-    emails.push(r.registrationEmail)
+    emails.push(r.registrationEmail);
    }
   });
 
 
-  var emailString = ""
+  var emailString = "";
   emails.forEach(function(e) {
-   emailString += (e + ", ")
-  })
+   emailString += (e + ", ");
+  });
   return emailString;
 
 
@@ -899,15 +899,15 @@ Template.runnerRegistrationSummary.helpers({
    runnerHasPaid: true
   }).forEach(function(r) {
    if (!_.contains(emails, r.registrationEmail)) {
-    emails.push(r.registrationEmail)
+    emails.push(r.registrationEmail);
    }
   });
 
 
-  var emailString = ""
+  var emailString = "";
   emails.forEach(function(e) {
-   emailString += (e + ", ")
-  })
+   emailString += (e + ", ");
+  });
   return emailString;
 
 
@@ -919,13 +919,13 @@ Template.runnerRegistrationSummary.helpers({
    runnerHasPaid: true
   }).forEach(function(r) {
    if (!_.contains(emails, r.registrationEmail)) {
-    emails.push(r.registrationEmail)
+    emails.push(r.registrationEmail);
    }
-  })
-  var emailString = ""
+  });
+  var emailString = "";
   emails.forEach(function(e) {
-   emailString += (e + ", ")
-  })
+   emailString += (e + ", ");
+  });
   return emailString;
 
 
@@ -937,13 +937,13 @@ Template.runnerRegistrationSummary.helpers({
    runnerRaceSelected: "Fun Run"
   }).forEach(function(r) {
    if (!_.contains(emails, r.registrationEmail)) {
-    emails.push(r.registrationEmail)
+    emails.push(r.registrationEmail);
    }
-  })
-  var emailString = ""
+  });
+  var emailString = "";
   emails.forEach(function(e) {
-   emailString += (e + ", ")
-  })
+   emailString += (e + ", ");
+  });
   return emailString;
 
 
@@ -955,13 +955,13 @@ Template.runnerRegistrationSummary.helpers({
    runnerRaceSelected: "5K Dragon Run"
   }).forEach(function(r) {
    if (!_.contains(emails, r.registrationEmail)) {
-    emails.push(r.registrationEmail)
+    emails.push(r.registrationEmail);
    }
-  })
-  var emailString = ""
+  });
+  var emailString = "";
   emails.forEach(function(e) {
-   emailString += (e + ", ")
-  })
+   emailString += (e + ", ");
+  });
   return emailString;
 
 
@@ -1009,12 +1009,12 @@ Template.registrationList.events({
     console.log('file generated');
    }
    if (err) {
-    console.log(err)
-   };
+    console.log(err);
+   }
 
   });
  }
-})
+});
 
 
 Template.paymentConfirmationFrontPage.helpers({
@@ -1052,7 +1052,7 @@ Template.paymentConfirmationFrontPage.helpers({
  totalFee: function() {
   var searchObject = Session.get('currentSearchObject');
   if (searchObject) {
-   var runners = Runners.find(searchObject)
+   var runners = Runners.find(searchObject);
    var fee = 0;
    runners.forEach(function(r) {
     fee += 100 + parseFloat(r.runnerAdditionalDonation);
@@ -1109,7 +1109,7 @@ Template.paymentConfirmationFrontPage.events({
 
   e.preventDefault();
 
-  var WeChat = $('#paymentByWeChat').val()
+  var WeChat = $('#paymentByWeChat').val();
   var currUser = Meteor.users.findOne({
    "profile.wechat": WeChat
   });
@@ -1118,10 +1118,10 @@ Template.paymentConfirmationFrontPage.events({
     registrationEmail: currUser.emails[0].address
    };
    Session.set('currentSearchObject', searchObject);
-   Session.set('currentPaymentMethod', 'WeChat')
+   Session.set('currentPaymentMethod', 'WeChat');
   }
   else {
-   alert('WeChat ID not found')
+   alert('WeChat ID not found');
   }
   $('#paymentByEmail').val('');
   $('#paymentByCode').val('');
@@ -1148,7 +1148,7 @@ Template.paymentConfirmationFrontPage.events({
       paymentDateText: paidDate,
       paymentDateEntered: paymentEnteredDate,
       paymentUser: Meteor.user().emails[0].address
-     }
+     };
 
      if (Session.equals('currentPaymentMethod', 'WeChat')) {
       var WeChat = $('#paymentByWeChat').val();
@@ -1212,7 +1212,7 @@ Template.paymentConfirmationFrontPage.events({
        console.log(currRunner);
        var payment = Payments.findOne({
         _id: currRunner.paymentID
-       })
+       });
 
        Payments.remove({
         _id: payment._id
@@ -1257,7 +1257,7 @@ Template.registrationSorted5K.helpers({
    sort: {
     runnerBibNumber: 1
    }
-  })
+  });
  },
  runnerAgeGroup: function() {
 
@@ -1273,7 +1273,7 @@ Template.registrationSorted5K.helpers({
    return 'HS';
   }
   else {
-   return 'A'
+   return 'A';
   }
 
  }
@@ -1289,7 +1289,7 @@ Template.registrationSorted1K.helpers({
    sort: {
     runnerBibNumber: -1
    }
-  })
+  });
  },
  runnerAgeGroup: function() {
 
@@ -1305,7 +1305,7 @@ Template.registrationSorted1K.helpers({
    return 'HS';
   }
   else {
-   return 'A'
+   return 'A';
   }
 
  }
@@ -1396,7 +1396,7 @@ var getNewRegistrationInfo = function() {
 
  return registrationObject;
 
-}
+};
 
 UI.registerHelper('registrationDeadlineText', function() {
 
@@ -1405,7 +1405,7 @@ UI.registerHelper('registrationDeadlineText', function() {
  });
 
 
-})
+});
 
 UI.registerHelper('raceCharityName', function() {
 
@@ -1414,7 +1414,7 @@ UI.registerHelper('raceCharityName', function() {
  }).value;
 
 
-})
+});
 
 UI.registerHelper('raceDateText', function() {
 
@@ -1423,7 +1423,7 @@ UI.registerHelper('raceDateText', function() {
  }).value;
 
 
-})
+});
 
 UI.registerHelper('registrationOpenDate', function() {
 
@@ -1432,7 +1432,7 @@ UI.registerHelper('registrationOpenDate', function() {
  }).value;
 
 
-})
+});
 
 UI.registerHelper('paymentDeadline', function() {
 
@@ -1441,7 +1441,7 @@ UI.registerHelper('paymentDeadline', function() {
  }).value;
 
 
-})
+});
 
 UI.registerHelper('registrationFee', function() {
 
@@ -1450,7 +1450,7 @@ UI.registerHelper('registrationFee', function() {
  }).value;
 
 
-})
+});
 
 UI.registerHelper('showRunnerNumber', function() {
 
@@ -1458,7 +1458,7 @@ UI.registerHelper('showRunnerNumber', function() {
   name: 'showRunnerNumber'
  }).value;
 
-})
+});
 
 UI.registerHelper('needVolunteers', function() {
 
@@ -1467,7 +1467,7 @@ UI.registerHelper('needVolunteers', function() {
  }).value;
 
 
-})
+});
 
 UI.registerHelper('registrationOpen', function() {
 
@@ -1476,7 +1476,7 @@ UI.registerHelper('registrationOpen', function() {
  }).value;
 
 
-})
+});
 
 
 UI.registerHelper('isWaiting', function() {
@@ -1484,12 +1484,12 @@ UI.registerHelper('isWaiting', function() {
  return AccountsTemplates.disabled();
 
 
-})
+});
 
 Accounts.onLogin(function() {
 
  Router.go('/portal/')
-})
+});
 
 Template.eventConfiguration.events({
  'click #submitEventSettings': function(e, t) {
@@ -1504,13 +1504,13 @@ Template.eventConfiguration.events({
     setEventConfiguration($(el).attr('name'), parseInt($(el).val()));
 
    }
-  })
+  });
 
  }
 
 
 
-})
+});
 
 Template.pickupPage.onRendered(function() {
 
@@ -1520,17 +1520,17 @@ Template.pickupPage.onRendered(function() {
   runnerHasPaid: true
  }).forEach(function(r) {
   if (!_.contains(emails, r.registrationEmail)) {
-   emails.push(r.registrationEmail)
+   emails.push(r.registrationEmail);
   }
- })
+ });
  var lastNames = [];
  Runners.find({
   runnerHasPaid: true
  }).forEach(function(r) {
   if (!_.contains(lastNames, r.runnerLastName)) {
-   lastNames.push(r.runnerLastName)
+   lastNames.push(r.runnerLastName);
   }
- })
+ });
 
 
  $("#searchPickupByEmail").autocomplete({
@@ -1577,15 +1577,15 @@ Template.pickupPage.events({
  'keydown #searchPickupByEmail': function(e) {
 
   if (e.keyCode == '13') {
-   e.stopPropagation()
+   e.stopPropagation();
 
   }
 
  },
  'focus #searchPickupByEmail, #searchPickupByName': function(e) {
 
-  $('#searchPickupByEmail').val('')
-  $('#searchPickupByName').val('')
+  $('#searchPickupByEmail').val('');
+  $('#searchPickupByName').val('');
 
 
  }
@@ -1593,7 +1593,7 @@ Template.pickupPage.events({
 
 
 
-})
+});
 
 Template.pickupPage.helpers({
 
@@ -1613,37 +1613,37 @@ Template.pickupPage.helpers({
  },
 
  num110: function() {
-  return getPickupSearchRecords('110')
+  return getPickupSearchRecords('110');
  },
  num120: function() {
-  return getPickupSearchRecords('120')
+  return getPickupSearchRecords('120');
  },
  num130: function() {
-  return getPickupSearchRecords('130')
+  return getPickupSearchRecords('130');
  },
  numXS: function() {
-  return getPickupSearchRecords('XS')
+  return getPickupSearchRecords('XS');
  },
  numS: function() {
-  return getPickupSearchRecords('S')
+  return getPickupSearchRecords('S');
  },
  numM: function() {
-  return getPickupSearchRecords('M')
+  return getPickupSearchRecords('M');
  },
  numL: function() {
-  return getPickupSearchRecords('L')
+  return getPickupSearchRecords('L');
  },
  numXL: function() {
 
-  return getPickupSearchRecords('XL')
+  return getPickupSearchRecords('XL');
  },
 
  numXXL: function() {
-  return getPickupSearchRecords('XXL')
+  return getPickupSearchRecords('XXL');
  },
 
 
-})
+});
 
 function getPickupSearchRecords(size) {
  var searchObject = Session.get('pickupSearchObject');
@@ -1691,8 +1691,8 @@ function getRegistrationFee() {
   return 50;
  }
  else {
-  return 100
- };
+  return 100;
+ }
 
 
 }
@@ -1706,11 +1706,11 @@ var generateRaceCode = function() {
 
  return a + b + c + d;
 
-}
+};
 
 var sendConfirmationEmail = function(name, email, registrationCode, id) {
 
- var emailString = "Dear " + name + ",\n Thank you for submitting your information through the Dragon Run/ Fun Run website. \n\n Your registration is not complete. You must print out your form and bring it in to the HIS office, along with your registration fee. \n\n You can access the link to your form at: \n http://dragonrun.meteor.com/registrationConfirmation/" + id + "/" + registrationCode + "/  \n\n Please email eweinberg@scischina.org for any questions about registration. \n\nThanks! \n\n Evan\n Dragon Run Registration Team"
+ var emailString = "Dear " + name + ",\n Thank you for submitting your information through the Dragon Run/ Fun Run website. \n\n Your registration is not complete. You must print out your form and bring it in to the HIS office, along with your registration fee. \n\n You can access the link to your form at: \n http://dragonrun.meteor.com/registrationConfirmation/" + id + "/" + registrationCode + "/  \n\n Please email eweinberg@scischina.org for any questions about registration. \n\nThanks! \n\n Evan\n Dragon Run Registration Team";
 
 
  Meteor.call('sendEmail',
@@ -1722,14 +1722,14 @@ var sendConfirmationEmail = function(name, email, registrationCode, id) {
 
 
 
-}
+};
 
 sendRunnerNumberEmail = function(name, email, number, id) {
 
- var sendRunnerNumberEmailString = "Dear " + name + ",\nWe hope you are excited about the Dragon Run/Fun Run this Saturday. On behalf of the committee, I want to thank you for participating.\n\n Your official runner number for this year's event is " + number + ". \n\nYou will be able to pick up your registration bag on Saturday between 7:00 and 7:30 AM. The race will start promptly at 8:00 AM.\n\n The bags will be given out according to this runner number, so please have it available when you arrive on Saturday. We will also have lists available for looking up your number if you forget.\n\nSee you on Saturday! \n\n Evan\n Dragon Run Registration Team"
+ var sendRunnerNumberEmailString = "Dear " + name + ",\nWe hope you are excited about the Dragon Run/Fun Run this Saturday. On behalf of the committee, I want to thank you for participating.\n\n Your official runner number for this year's event is " + number + ". \n\nYou will be able to pick up your registration bag on Saturday between 7:00 and 7:30 AM. The race will start promptly at 8:00 AM.\n\n The bags will be given out according to this runner number, so please have it available when you arrive on Saturday. We will also have lists available for looking up your number if you forget.\n\nSee you on Saturday! \n\n Evan\n Dragon Run Registration Team";
 
  var sendRunnerNumberSubject = 'Dragon Run/Fun Run: Runner Number ' + number;
 
  Meteor.call('sendEmail', email, 'eweinberg@scischina.org', sendRunnerNumberSubject, sendRunnerNumberEmailString);
 
-}
+};
