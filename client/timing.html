@@ -1,73 +1,69 @@
-<template name = "raceConfiguration">
-<div id = "raceConfiguration">
-Connection to server: {{connectedToServer}}<p></p>
+<template name="raceConfiguration">
+  <div id="raceConfiguration">
+    Connection to server: {{connectedToServer}}
+    <p></p>
 
-    <hr>
-{{#unless raceIsStarted}}
-<select id = "confirmStartRace">
-<option value = "">Confirm Race Start?</option>
-<option value = "1">Yes!</option>
+    <hr> {{#unless raceIsStarted}}
+    <select id="confirmStartRace">
+      <option value="">Confirm Race Start?</option>
+      <option value="1">Yes!</option>
 
-</select>
-<button class = "btn" id = "raceStartButton">Start Race</button>
-<p></p>
-    {{/unless}}
-    {{#if raceIsStarted}}
-    <button class = "btn" id = "raceStopButton">Stop Race</button>
+    </select>
+    <button class="btn" id="raceStartButton">Start Race</button>
+    <p></p>
+    {{/unless}} {{#if raceIsStarted}}
+    <button class="btn" id="raceStopButton">Stop Race</button>
     {{#with raceTime}}
-    <h2>Elapsed Race Time: <span id = "raceElapsedTime">{{minutes}}:{{seconds}}</span></h2>
+    <h2>Elapsed Race Time: <span id = "raceElapsedTime">{{minutes}}:{{seconds}}</span></h2> {{/with}} {{/if}}
+
+  </div>
+
+
+
+</template>
+
+<template name="officialRaceTime">
+  <div id="officialRaceTime">
+    <h1 class="centerText"> Official Dragon Run Time:</h1> {{#with raceTime}}
+    <div id="officialRaceTimeBlock" class="centerText">
+      <span id="raceElapsedTime">{{minutes}}:{{seconds}}</span></div>
     {{/with}}
-    {{/if}}
-
-</div>
-
-
-
+  </div>
 </template>
 
-<template name = "officialRaceTime">
-<div id = "officialRaceTime">
-<h1 class = "centerText"> Official Dragon Run Time:</h1>
-{{#with raceTime}}
-    <div id = "officialRaceTimeBlock" class = "centerText">
-        <span id = "raceElapsedTime">{{minutes}}:{{seconds}}</span></div>
-{{/with}}
-</div>
-</template>
+<template name="eventConfiguration">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 HISGoldSolid">
+      <h2 class="text-center">Event Settings</h2>
+      <p>The fields below allow the specifics of the event to be edited. This information will be changed site wide after the 'Submit' button is clicked.</p>
 
-<template name = "eventConfiguration">
-<div class = "row">
-  <div class = "col-md-6 col-md-offset-3 HISGoldSolid">
-    <h2 class = "text-center">Event Settings</h2>
-    <p>The fields below allow the specifics of the event to be edited. This information will be changed site wide after the 'Submit' button is clicked.</p>
+      <div class="form-group">
+        <label for="raceDateText">Set the text that will be displayed on the site for the date of the event. (e.g. May 16, 2016)</label>
+        <input type="text" id="raceDateText" name="raceDateText" placeholder="Date of the Event" class="form-control" value="{{raceDateText}}">
+      </div>
 
-  <div class = "form-group">
-  <label for = "raceDateText">Set the text that will be displayed on the site for the date of the event. (e.g. May 16, 2016)</label>
-    <input type = "text" id = "raceDateText" name = "raceDateText" placeholder = "Date of the Event" class = "form-control" value = "{{raceDateText}}">
+      <div class="form-group">
+        <label for="registrationOpenDate">Set the text that will be displayed on the site for when registration for the event opens.</label>
+        <input type="text" id="registrationOpenDate" name="registrationOpenDate" placeholder="When is registration open?" class="form-control" value="{{registrationOpenDate}}">
+      </div>
+
+      <div class="form-group">
+        <label for="paymentDeadline">Set the text that will be displayed on the site for when payment for all registrations is due.</label>
+        <input type="text" id="paymentDeadline" name="paymentDeadline" placeholder="paymentDeadline" class="form-control" value="{{paymentDeadline}}">
+      </div>
+
+      <div class="form-group">
+        <label for="raceCharityName">Set the text that will be displayed on the site for the event charity or charities</label>
+        <input type="text" id="raceCharityName" name="raceCharityName" placeholder="Name(s) of Charity" class="form-control" value="{{raceCharityName}}">
+      </div>
+
+      <div class="form-group">
+        <label for="registrationFee">Fee for all runners:</label>
+        <input type="number" id="registrationFee" name="registrationFee" placeholder="Registration fee in RMB" class="form-control" value="{{registrationFee}}">
+      </div>
+
+      <button id="submitEventSettings">Save Settings</button>
+
+    </div>
   </div>
-
-  <div class = "form-group">
-  <label for = "registrationOpenDate">Set the text that will be displayed on the site for when registration for the event opens.</label>
-    <input type = "text" id = "registrationOpenDate" name = "registrationOpenDate" placeholder = "When is registration open?" class = "form-control" value = "{{registrationOpenDate}}">
-  </div>
-
-  <div class = "form-group">
-  <label for = "paymentDeadline">Set the text that will be displayed on the site for when payment for all registrations is due.</label>
-    <input type = "text" id = "paymentDeadline" name = "paymentDeadline" placeholder = "paymentDeadline" class = "form-control" value = "{{paymentDeadline}}">
-  </div>
-
-  <div class = "form-group">
-  <label for = "raceCharityName">Set the text that will be displayed on the site for the event charity or charities</label>
-    <input type = "text" id = "raceCharityName" name = "raceCharityName" placeholder = "Name(s) of Charity" class = "form-control" value = "{{raceCharityName}}">
-  </div>
-
-  <div class = "form-group">
-  <label for = "registrationFee">Fee for all runners:</label>
-    <input type = "number" id = "registrationFee" name = "registrationFee" placeholder = "Registration fee in RMB" class = "form-control" value = "{{registrationFee}}">
-  </div>
-
-  <button id = "submitEventSettings">Save Settings</button>
-  
-  </div>
-</div>
 </template>

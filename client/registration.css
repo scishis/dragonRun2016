@@ -1,436 +1,337 @@
-#registrationFormBackground{
-   width:100%;
-    padding:30px;
-    margin-left:auto;
-    margin-right:auto;
-    margin-top:0px;
-    float:none;
-    background-color:#FCDC3B;
-    position: absolute;
-    display:block;
-    z-index:-1;
-
+#registrationFormBackground {
+ width: 100%;
+ padding: 30px;
+ margin-left: auto;
+ margin-right: auto;
+ margin-top: 0px;
+ float: none;
+ background-color: #FCDC3B;
+ position: absolute;
+ display: block;
+ z-index: -1;
 }
 
-
-#registrationFormContent{
- width:100%;
-
- margin-top:20px;
+#registrationFormContent {
+ width: 100%;
+ margin-top: 20px;
  margin-left: 10px;
- margin-right:10px;
- padding:20px;
- z-index:1;
-
+ margin-right: 10px;
+ padding: 20px;
+ z-index: 1;
 }
 
-#registrationEditFormContent{
- width:100%;
- margin-top:20px;
+#registrationEditFormContent {
+ width: 100%;
+ margin-top: 20px;
  margin-left: 10px;
- margin-right:10px;
- padding:20px;
- z-index:1;
- color:#FCDC3B;
-margin-bottom:60px;
-
-
+ margin-right: 10px;
+ padding: 20px;
+ z-index: 1;
+ color: #FCDC3B;
+ margin-bottom: 60px;
 }
 
-.regName{
-
- width:50%;
- margin:5px;
-
+.regName {
+ width: 50%;
+ margin: 5px;
 }
 
-#registerAnother{
-
- position:absolute;
- top:20px;
- left:40px;
- float:right;
- font-size:14px;
+#registerAnother {
+ position: absolute;
+ top: 20px;
+ left: 40px;
+ float: right;
+ font-size: 14px;
  color: white;
-
-
 }
 
-#confirmationPageContent{
-
- background-color:white;
+#confirmationPageContent {
+ background-color: white;
  height: 600px;
  margin: 5px;
- padding:10px;
-
-
-
-
+ padding: 10px;
 }
 
-#registrationCodeConfirmation{
-
- font-size:55px;
-float:right;
-border: black dotted 1px;
-
-}
-#runnerNameConfirmation{
-
- margin-left:auto;
- margin-right:auto;
- font-size:20px;
- width:50%;
-
-
-}
-#confirmationDisclaimer{
-
- float:right;
- display:block;
- width:100%;
- font-size:12px;
-
+#registrationCodeConfirmation {
+ font-size: 55px;
+ float: right;
+ border: black dotted 1px;
 }
 
-#registrationNotComplete{
-
- color:red;
-
-
-}
-#confirmFloatLeft{
-
-     width: 45%;
- margin-left:10px;
- margin-right:10px;
- float:left;
- display:inline-block;
-
+#runnerNameConfirmation {
+ margin-left: auto;
+ margin-right: auto;
+ font-size: 20px;
+ width: 50%;
 }
 
-#confirmFloatRight{
-width: 45%;
- margin-left:10px;
- margin-right:10px;
-
- float:right;
- display:inline-block;
-
-
-
-
+#confirmationDisclaimer {
+ float: right;
+ display: block;
+ width: 100%;
+ font-size: 12px;
 }
-.textInput{
 
+#registrationNotComplete {
+ color: red;
+}
+
+#confirmFloatLeft {
+ width: 45%;
+ margin-left: 10px;
+ margin-right: 10px;
+ float: left;
+ display: inline-block;
+}
+
+#confirmFloatRight {
+ width: 45%;
+ margin-left: 10px;
+ margin-right: 10px;
+ float: right;
+ display: inline-block;
+}
+
+.textInput {
  width: 80%;
  border: white 3px solid;
- font-size:20px;
- background:none;
- color:#020A66;
-
+ font-size: 20px;
+ background: none;
+ color: #020A66;
 }
 
-.textInput:hover{
-    border: #EBA100 3px solid;
-
+.textInput:hover {
+ border: #EBA100 3px solid;
 }
 
+#formShirtSize {}
 
-#formShirtSize{
+#shirtNotice {}
 
-
-
+#shirtSizeConfirmation {
+ display: none;
 }
 
-#shirtNotice{
-
+.formElement {
+ width: 100%;
+ margin-left: 10px;
+ margin-right: 10px;
 }
 
-#shirtSizeConfirmation{
-
- display:none;
-
-}
-
-.formElement{
-
-    width:100%;
-    margin-left: 10px;
-    margin-right: 10px;
-
-}
-#leftColumn{
-
+#leftColumn {
  width: 45%;
- margin-left:10px;
- float:left;
- display:inline-block;
-
-
-
-
-
+ margin-left: 10px;
+ float: left;
+ display: inline-block;
 }
 
-#rightColumn{
-width: 45%;
- margin-right:40px;
-margin-top:10px;
- float:right;
- display:inline-block;
-
-
-
+#rightColumn {
+ width: 45%;
+ margin-right: 40px;
+ margin-top: 10px;
+ float: right;
+ display: inline-block;
 }
 
 *::-webkit-input-placeholder {
-    color: #020A66;
+ color: #020A66;
 }
+
 *:-moz-placeholder {
-    /* FF 4-18 */
-    color: #020A66;
+ /* FF 4-18 */
+ color: #020A66;
 }
+
 *::-moz-placeholder {
-    /* FF 19+ */
-    color: #020A66;
+ /* FF 19+ */
+ color: #020A66;
 }
+
 *:-ms-input-placeholder {
-    /* IE 10+ */
-    color: #020A66;
+ /* IE 10+ */
+ color: #020A66;
 }
-select{
 
- width:50%;
-
-
+select {
+ width: 50%;
 }
-#notReadyYet{
- margin-left:auto;
- margin-right:auto;
- vertical-align:middle
- height:200px;
- width:200px;
- background:#020A66;
- z-index:10;
 
-
-
-
-
+#notReadyYet {
+ margin-left: auto;
+ margin-right: auto;
+ vertical-align: middle;
+ height: 200px;
+ width: 200px;
+ background: #020A66;
+ z-index: 10;
 }
-.raceSelect{
- width:150px;
- height:20px;
+
+.raceSelect {
+ width: 150px;
+ height: 20px;
  border: solid 2px black;
  border-radius: 5px;
  font-size: 24px;
- margin:10px;
-
-
+ margin: 10px;
 }
 
-#selectRaceParagraph{
-
- margin:20px;
-
-}
-.feeTotals{
-
- line-height:16px;
-
+#selectRaceParagraph {
+ margin: 20px;
 }
 
+.feeTotals {
+ line-height: 16px;
+}
 
-#submitRegistration{
-
- background-color:#EBA100;
+#submitRegistration {
+ background-color: #EBA100;
  border: solid 2px #020A66;
- font-size:30px;
- height:60px;
-margin-left:auto;
-margin-right:auto;
-border-radius:5px;
-margin-top:30px;
-
+ font-size: 30px;
+ height: 60px;
+ margin-left: auto;
+ margin-right: auto;
+ border-radius: 5px;
+ margin-top: 30px;
 }
 
-
-#updateRegistration{
-
- background-color:#EBA100;
+#updateRegistration {
+ background-color: #EBA100;
  border: solid 2px #020A66;
- font-size:30px;
- height:60px;
-margin-left:auto;
-margin-right:auto;
-border-radius:5px;
-margin-top:30px;
-
+ font-size: 30px;
+ height: 60px;
+ margin-left: auto;
+ margin-right: auto;
+ border-radius: 5px;
+ margin-top: 30px;
 }
-#updateRegistration:hover{
 
- background-color:#020A66;
+#updateRegistration:hover {
+ background-color: #020A66;
  border: solid 2px #EBA100;
  color: #EBA100;
- font-size:30px;
- height:60px;
-margin-left:auto;
-margin-right:auto;
-border-radius:5px;
-
+ font-size: 30px;
+ height: 60px;
+ margin-left: auto;
+ margin-right: auto;
+ border-radius: 5px;
 }
 
-#submitRegistration:hover{
-
- background-color:#020A66;
+#submitRegistration:hover {
+ background-color: #020A66;
  border: solid 2px #EBA100;
  color: #EBA100;
- font-size:30px;
- height:60px;
-margin-left:auto;
-margin-right:auto;
-border-radius:5px;
-
+ font-size: 30px;
+ height: 60px;
+ margin-left: auto;
+ margin-right: auto;
+ border-radius: 5px;
 }
 
-
-#updateRegistration:hover{
-
- background-color:#020A66;
+#updateRegistration:hover {
+ background-color: #020A66;
  border: solid 2px #EBA100;
  color: #EBA100;
-
-
 }
 
-#additionalDonation:hover{
-    border: #EBA100 3px solid;
-
+#additionalDonation:hover {
+ border: #EBA100 3px solid;
 }
 
-.paymentConfirmationContainer{
-
+.paymentConfirmationContainer {
  width: 400px;
- display:block;
- margin:auto;
+ display: block;
+ margin: auto;
  padding: 20px;
- position:relative;
- height:200px;
- background-color:#EBA100;
-
-
-
-
+ position: relative;
+ height: 200px;
+ background-color: #EBA100;
 }
 
-
-#paymentTextInputs{
-
- width:300px;
- border-radius:5px;
- height:36px;
-
-
-
-}
-#paymentConfirmationName{
-
-margin:10px;
-
-
-
+#paymentTextInputs {
+ width: 300px;
+ border-radius: 5px;
+ height: 36px;
 }
 
-#sortedRegistration5K{
- width:50%;
- margin-left:auto;
- margin-right:auto;
- float:none;
- background-color:#EBA100;
+#paymentConfirmationName {
+ margin: 10px;
+}
+
+#sortedRegistration5K {
+ width: 50%;
+ margin-left: auto;
+ margin-right: auto;
+ float: none;
+ background-color: #EBA100;
  color: #020A66;
-
-
-}
-#sortedTable5K{
- width:90%;
- margin-left:auto;
- margin-right:auto;
- float:none;
-}
-#sortedTable1K{
- width:90%;
- margin-left:auto;
- margin-right:auto;
- float:none;
 }
 
+#sortedTable5K {
+ width: 90%;
+ margin-left: auto;
+ margin-right: auto;
+ float: none;
+}
 
-#sortedRegistration1K{
- width:50%;
- margin-left:auto;
- margin-right:auto;
- float:none;
- background-color:#EBA100;
+#sortedTable1K {
+ width: 90%;
+ margin-left: auto;
+ margin-right: auto;
+ float: none;
+}
+
+#sortedRegistration1K {
+ width: 50%;
+ margin-left: auto;
+ margin-right: auto;
+ float: none;
+ background-color: #EBA100;
  color: #020A66;
-
-
 }
 
-#login{
- margin-left:20px;
- padding:0px;
- margin-top:0px;
- margin-bottom:-20px;
-display:flex
-    float:none;
-
-
+#login {
+ margin-left: 20px;
+ padding: 0px;
+ margin-top: 0px;
+ margin-bottom: -20px;
+ display: flex;
+ float: none;
 }
 
-#cameraScan{
-
- width:400px;
+#cameraScan {
+ width: 400px;
 }
 
-.portalButton{
-font-size:18px;
-height:30px;
-margin-left:auto;
-margin-right:auto;
-border-radius:5px;
-padding:5px;
-background-color:#11CC11;
+.portalButton {
+ font-size: 18px;
+ height: 30px;
+ margin-left: auto;
+ margin-right: auto;
+ border-radius: 5px;
+ padding: 5px;
+ background-color: #11CC11;
 }
 
-#at-btn{
-
-height:40px;
-
+#at-btn {
+ height: 40px;
 }
 
-#mainContentSpace{
-
-margin-top:auto;
-margin-bottom:30px;
-height:650px;
-
+#mainContentSpace {
+ margin-top: auto;
+ margin-bottom: 30px;
+ height: 650px;
 }
 
-#site-footer{
-
-padding-top:10px;
-margin-top:50px;
-border-top: 3px solid #020A66;
+#site-footer {
+ padding-top: 10px;
+ margin-top: 50px;
+ border-top: 3px solid #020A66;
 }
 
-#paymentOptions{
-
-margin-bottom:60px;
-
+#paymentOptions {
+ margin-bottom: 60px;
 }
 
-body{
-
-  padding-bottom: 70px;
+body {
+ padding-bottom: 70px;
 }
