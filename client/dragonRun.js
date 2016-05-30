@@ -6,7 +6,7 @@ Session.set("currentPaymentRegistrationCode", '');
 Session.set("selectedLanguage", 'EN');
 
 
-Meteor.setInterval(function() {
+Meteor.setInterval(() => {
     Session.set('time', new Date());
 }, 10);
 Meteor.subscribe("systemVariables");
@@ -15,23 +15,23 @@ Meteor.subscribe("runners", {}, {});
 Meteor.subscribe("payments");
 Meteor.subscribe("users");
 
-Template.registerHelper('isAdminUser', function() {
+Template.registerHelper('isAdminUser', () => {
     return Roles.userIsInRole(Meteor.user(), ['admin']);
 });
-Template.registerHelper('isStaffUser', function() {
+Template.registerHelper('isStaffUser', () => {
     return Roles.userIsInRole(Meteor.user(), ['staff', 'admin']);
 });
 
-Template.registerHelper('isWechatUser', function() {
+Template.registerHelper('isWechatUser', () => {
     return Roles.userIsInRole(Meteor.user(), ['wechat', 'admin']);
 });
 Template.loginForm.events({
-    'click #loginButton': function(e) {
+    'click #loginButton': e => {
         e.preventDefault();
         var username = $('#inputUsername').val();
         var password = $('#inputPassword').val();
         var previousPath = Session.get('currentURL');
-        Meteor.loginWithPassword(username, password, function() {
+        Meteor.loginWithPassword(username, password, () => {
             Router.go(previousPath);
         });
     }
@@ -44,7 +44,7 @@ Template.loginForm.events({
 
 
 Template.raceConfiguration.events({
-    'click #raceStartButton': function(e) {
+    'click #raceStartButton': e => {
         e.preventDefault();
         if ($('#confirmStartRace').val() == '1') {
             Meteor.call('startRace');
@@ -54,7 +54,7 @@ Template.raceConfiguration.events({
         }
 
     },
-    'click #raceStopButton': function(e) {
+    'click #raceStopButton': e => {
         e.preventDefault();
         Meteor.call('stopRace');
     }
@@ -64,7 +64,7 @@ Template.raceConfiguration.events({
 
 
 Template.raceConfiguration.helpers({
-    raceIsStarted: function() {
+    raceIsStarted: () => {
         var raceStarted = systemVariables.findOne({
             name: "raceHasStarted"
         });
@@ -73,7 +73,7 @@ Template.raceConfiguration.helpers({
         }
         return raceStarted.value;
     },
-    raceTime: function() {
+    raceTime: () => {
         var currentTime = Session.get('time');
         var raceStartTime = systemVariables.findOne({
             name: "raceStartTime"
@@ -99,7 +99,7 @@ Template.raceConfiguration.helpers({
             seconds: secondString
         };
     },
-    connectedToServer: function() {
+    connectedToServer: () => {
         return Meteor.status().status;
     }
 
@@ -108,7 +108,7 @@ Template.raceConfiguration.helpers({
 
 
 Template.officialRaceTime.helpers({
-    raceTime: function() {
+    raceTime: () => {
 
         var currentTime = Session.get('time');
         var raceStartTime = systemVariables.findOne({
@@ -144,7 +144,7 @@ Template.officialRaceTime.helpers({
 
 Template.smallRaceTime.helpers({
     raceTime: raceTime,
-    connection: function() {
+    connection: () => {
 
         if (Meteor.status().status == 'connected') {
             return "green";
@@ -158,7 +158,7 @@ Template.smallRaceTime.helpers({
 
 
 
-function raceTime() {
+var raceTime = () => {
     var clientTime = parseInt(Session.get('time'));
     var raceStartTime = systemVariables.findOne({
         name: "raceStartTime"
@@ -188,7 +188,7 @@ function raceTime() {
 
 }
 
-function stopTimeString() {
+var stopTimeString = () => {
     var elapsedTime = this.runnerStopTime;
     minutes = Math.floor(elapsedTime / 60000);
     seconds = Math.floor(((elapsedTime / 60000) - Math.floor(elapsedTime / 60000)) * 60)

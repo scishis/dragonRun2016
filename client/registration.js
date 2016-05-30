@@ -1,6 +1,6 @@
 Template.header.events({
 
-    'click .navbar-nav > li > a': function(e) {
+    'click .navbar-nav > li > a': e => {
 
         $('.navbar-nav > li').removeClass('active');
 
@@ -8,7 +8,7 @@ Template.header.events({
 
 
     },
-    'change #selectLang': function(e) {
+    'change #selectLang': e => {
 
         Session.set('selectedLanguage', $(e.target).val());
 
@@ -21,7 +21,7 @@ Template.header.events({
 
 Template.registrationForm.helpers({
 
-    ageGroupSelected: function() {
+    ageGroupSelected: () => {
         currentAge = Session.get('selectedAge');
 
         if (currentAge == "-1") {
@@ -34,7 +34,7 @@ Template.registrationForm.helpers({
     },
 
 
-    registrationTotal: function() {
+    registrationTotal: () => {
 
         var registrationFee = systemVariables.findOne({
             name: 'registrationFee'
@@ -53,19 +53,19 @@ Template.registrationForm.helpers({
 
     },
 
-    raceSelected: function() {
+    raceSelected: () => {
 
         return (Session.get("selectedRace") != '');
 
     },
 
-    funRunSelected: function() {
+    funRunSelected: () => {
 
         return (Session.get("selectedRace") == 'Fun Run');
 
     },
 
-    raceName: function() {
+    raceName: () => {
 
         if (Session.get("selectedRace") == '1K Fun Run') {
             return "1K Fun Run"
@@ -75,17 +75,17 @@ Template.registrationForm.helpers({
 
         }
     },
-    showSubmitButton: function() {
+    showSubmitButton: () => {
 
         return (Session.equals("showSubmitButton", true));
 
     },
-    userEmail: function() {
+    userEmail: () => {
 
         return Meteor.user().emails[0].address;
 
     },
-    userPhone: function() {
+    userPhone: () => {
 
         return Meteor.user().profile.phone;
 
@@ -98,7 +98,7 @@ Template.registrationForm.helpers({
 Template.registrationForm.events({
 
 
-    'click #submitRegistration': function(e) {
+    'click #submitRegistration': (e) {
         e.preventDefault();
         var textInputs = $('.requiredQ')
         var numOfBlank = 0;
@@ -116,7 +116,7 @@ Template.registrationForm.events({
             var registrationObject = getNewRegistrationInfo();
             console.log(registrationObject);
             $('#submitRegistration').html('Submitting....');
-            Runners.insert(registrationObject, function(error, result) {
+            Runners.insert(registrationObject, (error, result) {
 
                 if (error == undefined) {
                     Session.equals("showSubmitButton", false);
@@ -141,7 +141,7 @@ Template.registrationForm.events({
         }
 
     },
-    'click #registrationMustPayToComplete': function() {
+    'click #registrationMustPayToComplete': () => {
 
         var payBoolean = $('#registrationMustPayToComplete').is(":checked");
 
@@ -154,7 +154,7 @@ Template.registrationForm.events({
         }
 
     },
-    'click #raceDisclaimerSelect': function() {
+    'click #raceDisclaimerSelect': () => {
 
         var payBoolean = $('#registrationMustPayToComplete').is(":checked");
 
@@ -168,7 +168,7 @@ Template.registrationForm.events({
 
     },
 
-    'change #additionalDonation': function() {
+    'change #additionalDonation': () => {
 
         Session.set("runnerAdditionalDonation", $('#registrationFormContent').find('[name=runnerAdditionalDonation]').val());
 
@@ -178,7 +178,7 @@ Template.registrationForm.events({
 
 });
 
-Template.registrationForm.onRendered(function() {
+Template.registrationForm.onRendered(() => {
 
     Session.set("showSubmitButton", false);
     Session.set("selectedRace", '');
@@ -186,7 +186,7 @@ Template.registrationForm.onRendered(function() {
 
 Template.selectRace.events({
 
-    'click .raceSelect': function(e) {
+    'click .raceSelect': (e) {
         e.stopPropagation();
         var selectedRace = $(e.currentTarget).html();
         if (selectedRace == "5K Dragon Run/5公里跑") {
@@ -207,7 +207,7 @@ Template.selectRace.events({
 
 Template.userPortal.helpers({
 
-    myRegistrations: function() {
+    myRegistrations: () => {
         var currentUserEmail = Meteor.user().emails[0].address;
         var myregistrations = Runners.find({
             registrationEmail: currentUserEmail
@@ -220,13 +220,13 @@ Template.userPortal.helpers({
         return null;
 
     },
-    myTotalPayment: function() {
+    myTotalPayment: () => {
         var currentUserEmail = Meteor.user().emails[0].address;
         var fee = 0;
         var myRunners = Runners.find({
             registrationEmail: currentUserEmail
         });
-        myRunners.forEach(function(r) {
+        myRunners.forEach((r) {
 
             fee += (100 + parseFloat(r.runnerAdditionalDonation));
 
@@ -236,7 +236,7 @@ Template.userPortal.helpers({
 
 
     },
-    userEmail: function() {
+    userEmail: () => {
         return Meteor.user().emails[0].address;
 
     },
@@ -245,12 +245,12 @@ Template.userPortal.helpers({
 });
 
 Template.myRegistrationItem.helpers({
-    runnerFullName: function() {
+    runnerFullName: () => {
 
         return (this.runnerFirstName + " " + this.runnerLastName);
     },
 
-    runnerPaidStatus: function() {
+    runnerPaidStatus: () => {
 
         if (this.runnerHasPaid) {
 
@@ -266,7 +266,7 @@ Template.myRegistrationItem.helpers({
 });
 
 Template.myRegistrationItem.events({
-    'click .registrationDelete': function(e) {
+    'click .registrationDelete': e => {
         e.preventDefault();
         var confirmDelete = confirm("Are you sure you want to delete this registration?");
         if (confirmDelete) {
@@ -281,7 +281,7 @@ Template.myRegistrationItem.events({
 });
 
 Template.paymentOptions.events({
-    'click #setWeChatID': function() {
+    'click #setWeChatID': () => {
         var id = $('#userWeChat').val();
         Meteor.users.update({
             _id: Meteor.user()._id
@@ -296,7 +296,7 @@ Template.paymentOptions.events({
 
 Template.adminTemplate.events({
 
-    'click #resendEmail': function(e) {
+    'click #resendEmail': e => {
         var email = $('#verifyEmailResendAddress').val();
 
         Session.set('verifyEmailStatus', "Searching for user");
@@ -306,7 +306,7 @@ Template.adminTemplate.events({
         });
         console.log(user);
         if (user) {
-            var response = Meteor.call('sendVerifyEmail', user._id, function(error, result) {
+            var response = Meteor.call('sendVerifyEmail', user._id, (error, result) => {
 
                 if (result) {
                     Session.set('verifyEmailStatus', result);
@@ -327,7 +327,7 @@ Template.adminTemplate.events({
 
 Template.adminTemplate.helpers({
 
-    verifyStatus: function() {
+    verifyStatus: () => {
 
         return Session.get('verifyEmailStatus');
 
@@ -335,28 +335,28 @@ Template.adminTemplate.helpers({
 
 });
 
-Template.adminTemplate.onRendered(function() {
+Template.adminTemplate.onRendered(() => {
 
     Session.set('verifyEmailStatus', "");
 
 });
 
 Template.paymentOptions.helpers({
-    userWeChat: function() {
+    userWeChat: () => {
         return Meteor.user().profile.wechat;
     },
-    userEmail: function() {
+    userEmail: () => {
 
         return Meteor.user().emails[0].address;
 
     },
-    userTotal: function() {
+    userTotal: () => {
         var currentUserEmail = Meteor.user().emails[0].address;
         var fee = 0;
         var myRunners = Runners.find({
             registrationEmail: currentUserEmail
         });
-        myRunners.forEach(function(r) {
+        myRunners.forEach(r => {
 
             fee += (100 + parseFloat(r.runnerAdditionalDonation));
 
@@ -371,20 +371,20 @@ Template.paymentOptions.helpers({
 
 Template.registrationEdit.helpers({
 
-    runnerInformation: function() {
+    runnerInformation: () => {
         return Runners.findOne({
             _id: this._id
         });
 
     },
-    registrationTotal: function() {
+    registrationTotal: () => {
         var thisRunner = Runners.findOne({
             _id: this._id
         });
         return 100 + parseFloat(thisRunner.runnerAdditionalDonation);
     },
 
-    runnerWeChat: function() {
+    runnerWeChat: () => {
         var wechat = Meteor.users.findOne({
             "emails.0.address": this.registrationEmail
         }).profile.wechat;
@@ -398,7 +398,7 @@ Template.registrationEdit.helpers({
 
 Template.registrationEdit.events({
 
-    'click #updateRegistration': function(e) {
+    'click #updateRegistration': e => {
         e.preventDefault();
         var registrationObject = {
             runnerRaceSelected: $('#registrationEditFormContent').find('[name=runnerRaceSelected]').val(),
@@ -420,7 +420,7 @@ Template.registrationEdit.events({
             _id: this._id
         }, {
             $set: registrationObject
-        }, function(error, result) {
+        }, (error, result) => {
 
 
             if (error == undefined) {
@@ -433,7 +433,7 @@ Template.registrationEdit.events({
     }
 });
 
-Template.registrationEdit.rendered = function() {
+Template.registrationEdit.rendered = () => {
 
     console.log(this);
     $('#registrationEditFormContent').find('[name=runnerAge]').val(this.data.runnerAge);
@@ -447,7 +447,7 @@ Template.registrationEdit.rendered = function() {
 
 Template.registrationEdit.helpers({
 
-    funRunSelected: function() {
+    funRunSelected: () => {
 
         return Session.get("funRunSelected");
 
@@ -460,12 +460,12 @@ Template.registrationEdit.helpers({
 
 Template.userPortal.events({
 
-    'click #addRunnerRegistration': function(e) {
+    'click #addRunnerRegistration': e => {
 
         Router.go('/registration/');
 
     },
-    'change #volunteerCheckbox': function(e) {
+    'change #volunteerCheckbox': e => {
 
         var currentVal = $('#volunteerCheckbox').is(":checked");
         Meteor.users.update({
@@ -480,7 +480,7 @@ Template.userPortal.events({
 
         }
     },
-    'click .deleteRunnerRegistration': function() {
+    'click .deleteRunnerRegistration': () => {
 
         var sure = confirm("Are you sure you want to delete this runner?");
         if (sure) {
@@ -497,7 +497,7 @@ Template.userPortal.events({
 
 Template.registrationList.helpers({
 
-    paidRunners: function() {
+    paidRunners: () => {
         runnersList = Runners.find({
             runnerHasPaid: true
         }, {
@@ -507,7 +507,7 @@ Template.registrationList.helpers({
         }).fetch();
         return runnersList;
     },
-    notPaidRunners: function() {
+    notPaidRunners: () => {
         runnersList = Runners.find({
             runnerHasPaid: false
         }, {
@@ -517,12 +517,12 @@ Template.registrationList.helpers({
         }).fetch();
         return runnersList;
     },
-    dateString: function() {
+    dateString: () => {
 
         return this.runnerPaidDate.toLocaleDateString();
 
     },
-    paymentEnteredBy: function() {
+    paymentEnteredBy: () => {
 
 
         var paymentID = Payments.findOne({
@@ -539,7 +539,7 @@ Template.registrationList.helpers({
 
     },
 
-    numberPaid: function() {
+    numberPaid: () => {
         return Runners.find({
             runnerHasPaid: true
         }, {
@@ -550,7 +550,7 @@ Template.registrationList.helpers({
 
     },
 
-    numberUnpaid: function() {
+    numberUnpaid: () => {
 
         return Runners.find({
             runnerHasPaid: false
@@ -560,7 +560,7 @@ Template.registrationList.helpers({
             }
         }).count();
     },
-    numberRegistered: function() {
+    numberRegistered: () => {
 
         return Runners.find().count();
 
@@ -568,7 +568,7 @@ Template.registrationList.helpers({
 });
 Template.registrationListDeleteEnabled.helpers({
 
-    paidRunners: function() {
+    paidRunners: () => {
         runnersList = Runners.find({
             runnerHasPaid: 'true'
         }, {
@@ -578,7 +578,7 @@ Template.registrationListDeleteEnabled.helpers({
         }).fetch();
         return runnersList;
     },
-    notPaidRunners: function() {
+    notPaidRunners: () => {
         runnersList = Runners.find({
             runnerHasPaid: 'false'
         }, {
@@ -589,7 +589,7 @@ Template.registrationListDeleteEnabled.helpers({
         return runnersList;
     },
 
-    numberPaid: function() {
+    numberPaid: () => {
         return Runners.find({
             runnerHasPaid: 'true'
         }, {
@@ -600,7 +600,7 @@ Template.registrationListDeleteEnabled.helpers({
 
     },
 
-    numberUnpaid: function() {
+    numberUnpaid: () => {
 
         return Runners.find({
             runnerHasPaid: 'false'
@@ -610,7 +610,7 @@ Template.registrationListDeleteEnabled.helpers({
             }
         }).count();
     },
-    numberRegistered: function() {
+    numberRegistered: () => {
 
         return Runners.find().count();
 
@@ -618,7 +618,7 @@ Template.registrationListDeleteEnabled.helpers({
 });
 
 Template.runnerRegistrationSummary.helpers({
-    totalMenPaid: function() {
+    totalMenPaid: () => {
 
         return Runners.find({
             runnerRaceSelected: "5K Dragon Run",
@@ -627,7 +627,7 @@ Template.runnerRegistrationSummary.helpers({
         }).count();
     },
 
-    totalMenUnpaid: function() {
+    totalMenUnpaid: () => {
         return Runners.find({
             runnerRaceSelected: "5K Dragon Run",
             runnerGender: "M",
@@ -636,7 +636,7 @@ Template.runnerRegistrationSummary.helpers({
 
     },
 
-    totalMen: function() {
+    totalMen: () => {
 
         return Runners.find({
             runnerRaceSelected: "5K Dragon Run",
@@ -645,7 +645,7 @@ Template.runnerRegistrationSummary.helpers({
     },
 
 
-    totalWomenPaid: function() {
+    totalWomenPaid: () => {
         runnersList = Runners.find({
             runnerRaceSelected: "5K Dragon Run",
             runnerGender: "F",
@@ -654,7 +654,7 @@ Template.runnerRegistrationSummary.helpers({
         return runnersList;
     },
 
-    totalWomenUnpaid: function() {
+    totalWomenUnpaid: () => {
         return Runners.find({
             runnerRaceSelected: "5K Dragon Run",
             runnerGender: "F",
@@ -663,7 +663,7 @@ Template.runnerRegistrationSummary.helpers({
 
     },
 
-    totalWomen: function() {
+    totalWomen: () => {
 
         return Runners.find({
             runnerRaceSelected: "5K Dragon Run",
@@ -671,7 +671,7 @@ Template.runnerRegistrationSummary.helpers({
         }).count();
     },
 
-    total1KPaid: function() {
+    total1KPaid: () => {
         runnersList = Runners.find({
             runnerRaceSelected: "Fun Run",
             runnerHasPaid: true
@@ -679,7 +679,7 @@ Template.runnerRegistrationSummary.helpers({
         return runnersList;
     },
 
-    total1KUnpaid: function() {
+    total1KUnpaid: () => {
         return Runners.find({
             runnerRaceSelected: "Fun Run",
             runnerHasPaid: false
@@ -687,14 +687,14 @@ Template.runnerRegistrationSummary.helpers({
 
     },
 
-    total1K: function() {
+    total1K: () => {
 
         return Runners.find({
             runnerRaceSelected: "Fun Run"
         }).count();
     },
 
-    num5K110: function() {
+    num5K110: () => {
 
         return Runners.find({
             runnerRaceSelected: "5K Dragon Run",
@@ -702,7 +702,7 @@ Template.runnerRegistrationSummary.helpers({
             runnerHasPaid: true
         }).count();
     },
-    num5K120: function() {
+    num5K120: () => {
 
         return Runners.find({
             runnerRaceSelected: "5K Dragon Run",
@@ -710,7 +710,7 @@ Template.runnerRegistrationSummary.helpers({
             runnerHasPaid: true
         }).count();
     },
-    num5K130: function() {
+    num5K130: () => {
 
         return Runners.find({
             runnerRaceSelected: "5K Dragon Run",
@@ -718,7 +718,7 @@ Template.runnerRegistrationSummary.helpers({
             runnerHasPaid: true
         }).count();
     },
-    num5KXS: function() {
+    num5KXS: () => {
 
         return Runners.find({
             runnerRaceSelected: "5K Dragon Run",
@@ -726,7 +726,7 @@ Template.runnerRegistrationSummary.helpers({
             runnerHasPaid: true
         }).count();
     },
-    num5KS: function() {
+    num5KS: () => {
 
         return Runners.find({
             runnerRaceSelected: "5K Dragon Run",
@@ -734,7 +734,7 @@ Template.runnerRegistrationSummary.helpers({
             runnerHasPaid: true
         }).count();
     },
-    num5KM: function() {
+    num5KM: () => {
 
         return Runners.find({
             runnerRaceSelected: "5K Dragon Run",
@@ -742,7 +742,7 @@ Template.runnerRegistrationSummary.helpers({
             runnerHasPaid: true
         }).count();
     },
-    num5KL: function() {
+    num5KL: () => {
 
         return Runners.find({
             runnerRaceSelected: "5K Dragon Run",
@@ -750,7 +750,7 @@ Template.runnerRegistrationSummary.helpers({
             runnerHasPaid: true
         }).count();
     },
-    num5KXL: function() {
+    num5KXL: () => {
 
         return Runners.find({
             runnerRaceSelected: "5K Dragon Run",
@@ -759,7 +759,7 @@ Template.runnerRegistrationSummary.helpers({
         }).count();
     },
 
-    num5KXXL: function() {
+    num5KXXL: () => {
 
         return Runners.find({
             runnerRaceSelected: "5K Dragon Run",
@@ -768,7 +768,7 @@ Template.runnerRegistrationSummary.helpers({
         }).count();
     },
 
-    num1K110: function() {
+    num1K110: () => {
 
         return Runners.find({
             runnerRaceSelected: "Fun Run",
@@ -776,7 +776,7 @@ Template.runnerRegistrationSummary.helpers({
             runnerHasPaid: true
         }).count();
     },
-    num1K120: function() {
+    num1K120: () => {
 
         return Runners.find({
             runnerRaceSelected: "Fun Run",
@@ -784,7 +784,7 @@ Template.runnerRegistrationSummary.helpers({
             runnerHasPaid: true
         }).count();
     },
-    num1K130: function() {
+    num1K130: () => {
 
         return Runners.find({
             runnerRaceSelected: "Fun Run",
@@ -792,7 +792,7 @@ Template.runnerRegistrationSummary.helpers({
             runnerHasPaid: true
         }).count();
     },
-    num1KXS: function() {
+    num1KXS: () => {
 
         return Runners.find({
             runnerRaceSelected: "Fun Run",
@@ -800,7 +800,7 @@ Template.runnerRegistrationSummary.helpers({
             runnerHasPaid: true
         }).count();
     },
-    num1KS: function() {
+    num1KS: () => {
 
         return Runners.find({
             runnerRaceSelected: "Fun Run",
@@ -808,7 +808,7 @@ Template.runnerRegistrationSummary.helpers({
             runnerHasPaid: true
         }).count();
     },
-    num1KM: function() {
+    num1KM: () => {
 
         return Runners.find({
             runnerRaceSelected: "Fun Run",
@@ -816,7 +816,7 @@ Template.runnerRegistrationSummary.helpers({
             runnerHasPaid: true
         }).count();
     },
-    num1KL: function() {
+    num1KL: () => {
 
         return Runners.find({
             runnerRaceSelected: "Fun Run",
@@ -824,7 +824,7 @@ Template.runnerRegistrationSummary.helpers({
             runnerHasPaid: true
         }).count();
     },
-    num1KXL: function() {
+    num1KXL: () => {
 
         return Runners.find({
             runnerRaceSelected: "Fun Run",
@@ -833,7 +833,7 @@ Template.runnerRegistrationSummary.helpers({
         }).count();
     },
 
-    num1KXXL: function() {
+    num1KXXL: () => {
 
         return Runners.find({
             runnerRaceSelected: "Fun Run",
@@ -842,10 +842,10 @@ Template.runnerRegistrationSummary.helpers({
         }).count();
     },
 
-    usersWithNoRegisteredRunners: function() {
+    usersWithNoRegisteredRunners: () => {
         var users = Meteor.users.find();
         var emails = [];
-        users.forEach(function(r) {
+        users.forEach(r => {
             if (Runners.find({
                     registrationEmail: r.emails[0].address
                 }).count() === 0) {
@@ -853,7 +853,7 @@ Template.runnerRegistrationSummary.helpers({
             }
         });
         var emailString = "";
-        emails.forEach(function(e) {
+        emails.forEach(e => {
             emailString += (e + ", ");
         });
         return emailString;
@@ -861,12 +861,12 @@ Template.runnerRegistrationSummary.helpers({
 
     },
 
-    usersWithUnpaidRunners: function() {
+    usersWithUnpaidRunners: () => {
 
         var emails = [];
         Runners.find({
             runnerHasPaid: false
-        }).forEach(function(r) {
+        }).forEach(r => {
             if (!_.contains(emails, r.registrationEmail)) {
                 emails.push(r.registrationEmail);
             }
@@ -874,19 +874,19 @@ Template.runnerRegistrationSummary.helpers({
 
 
         var emailString = "";
-        emails.forEach(function(e) {
+        emails.forEach(e => {
             emailString += (e + ", ");
         });
         return emailString;
 
 
     },
-    usersWithAllRunnersPaid: function() {
+    usersWithAllRunnersPaid: () => {
 
         var emails = [];
         Runners.find({
             runnerHasPaid: true
-        }).forEach(function(r) {
+        }).forEach(r => {
             if (!_.contains(emails, r.registrationEmail)) {
                 emails.push(r.registrationEmail);
             }
@@ -894,7 +894,7 @@ Template.runnerRegistrationSummary.helpers({
 
 
         var emailString = "";
-        emails.forEach(function(e) {
+        emails.forEach(e => {
             emailString += (e + ", ");
         });
         return emailString;
@@ -902,53 +902,53 @@ Template.runnerRegistrationSummary.helpers({
 
 
     },
-    usersRegisteredRunnersAllEvents: function() {
+    usersRegisteredRunnersAllEvents: () => {
         var emails = [];
         Runners.find({
             runnerHasPaid: true
-        }).forEach(function(r) {
+        }).forEach(r => {
             if (!_.contains(emails, r.registrationEmail)) {
                 emails.push(r.registrationEmail);
             }
         });
         var emailString = "";
-        emails.forEach(function(e) {
+        emails.forEach(e => {
             emailString += (e + ", ");
         });
         return emailString;
 
 
     },
-    usersRegisteredRunnersFunRun: function() {
+    usersRegisteredRunnersFunRun: () => {
         var emails = [];
         Runners.find({
             runnerHasPaid: true,
             runnerRaceSelected: "Fun Run"
-        }).forEach(function(r) {
+        }).forEach(r => {
             if (!_.contains(emails, r.registrationEmail)) {
                 emails.push(r.registrationEmail);
             }
         });
         var emailString = "";
-        emails.forEach(function(e) {
+        emails.forEach(e => {
             emailString += (e + ", ");
         });
         return emailString;
 
 
     },
-    usersRegisteredRunnersDragonRun: function() {
+    usersRegisteredRunnersDragonRun: () => {
         var emails = [];
         Runners.find({
             runnerHasPaid: true,
             runnerRaceSelected: "5K Dragon Run"
-        }).forEach(function(r) {
+        }).forEach(r => {
             if (!_.contains(emails, r.registrationEmail)) {
                 emails.push(r.registrationEmail);
             }
         });
         var emailString = "";
-        emails.forEach(function(e) {
+        emails.forEach(e => {
             emailString += (e + ", ");
         });
         return emailString;
@@ -962,7 +962,7 @@ Template.runnerRegistrationSummary.helpers({
 
 
 Template.registrationList.events({
-    'click .deleteRunner': function(e) {
+    'click .deleteRunner': e => {
         e.preventDefault();
         var currentRunner = this;
         var forReal = confirm("Are you sure you want to delete this registration?");
@@ -973,18 +973,18 @@ Template.registrationList.events({
         }
     },
 
-    'click .sendPaymentEmail': function(e) {
+    'click .sendPaymentEmail': e => {
         e.preventDefault();
         var currentRunner = this;
         Meteor.call('sendPaymentEmail', this.registrationEmail);
 
 
     },
-    'click #downloadRegistrationData': function(e) {
+    'click #downloadRegistrationData': e => {
         e.preventDefault();
 
         var nameFile = 'registrationData.csv';
-        Meteor.call('download', function(err, fileContent) {
+        Meteor.call('download', (err, fileContent) => {
             if (fileContent) {
                 var blob = new Blob([fileContent], {
                     type: "text/plain;charset=utf-8"
@@ -1009,7 +1009,7 @@ Template.registrationList.events({
 Template.paymentConfirmationFrontPage.helpers({
 
 
-    retrievedRecords: function() {
+    retrievedRecords: () => {
         var currentSearch = Session.get('currentSearchObject');
         if (currentSearch != null) {
             var runnerRecord = Runners.find(currentSearch);
@@ -1020,7 +1020,7 @@ Template.paymentConfirmationFrontPage.helpers({
         }
 
     },
-    runnerPaidStatus: function() {
+    runnerPaidStatus: () => {
 
         if (this.runnerHasPaid) {
 
@@ -1032,34 +1032,34 @@ Template.paymentConfirmationFrontPage.helpers({
 
         }
     },
-    runnerFee: function() {
+    runnerFee: () => {
         return 100 + parseFloat(this.runnerAdditionalDonation);
 
     },
-    totalFee: function() {
+    totalFee: () => {
         var searchObject = Session.get('currentSearchObject');
         if (searchObject) {
             var runners = Runners.find(searchObject);
             var fee = 0;
-            runners.forEach(function(r) {
+            runners.forEach(r => {
                 fee += 100 + parseFloat(r.runnerAdditionalDonation);
             });
             return fee;
         }
         return null;
     },
-    searchObject: function() {
+    searchObject: () => {
 
         return !(Session.equals('currentSearchObject', null));
     },
-    currentDate: function() {
+    currentDate: () => {
         var now = new Date();
         return now.toLocaleDateString();
 
     }
 });
 
-Template.paymentConfirmationFrontPage.rendered = function() {
+Template.paymentConfirmationFrontPage.rendered = () => {
 
     Session.set('currentSearchObject', null);
     $('#paymentTypeSelect').val('Direct');
@@ -1067,7 +1067,7 @@ Template.paymentConfirmationFrontPage.rendered = function() {
 
 Template.paymentConfirmationFrontPage.events({
 
-    'click #submitCodeSearch': function(e) {
+    'click #submitCodeSearch': e => {
 
         e.preventDefault();
         var currentCode = $('#paymentByCode').val();
@@ -1079,7 +1079,7 @@ Template.paymentConfirmationFrontPage.events({
         $('#paymentByEmail').val('');
         $('#paymentByWeChat').val('');
     },
-    'click #submitEmailSearch': function(e) {
+    'click #submitEmailSearch': e => {
 
         e.preventDefault();
         var currentEmail = $('#paymentByEmail').val().toLowerCase();
@@ -1092,7 +1092,7 @@ Template.paymentConfirmationFrontPage.events({
         $('#paymentByCode').val('');
         $('#paymentByWeChat').val('');
     },
-    'click #submitWeChatSearch': function(e) {
+    'click #submitWeChatSearch': e => {
 
         e.preventDefault();
 
@@ -1113,7 +1113,7 @@ Template.paymentConfirmationFrontPage.events({
         $('#paymentByCode').val('');
     },
 
-    'click .paidToggle': function(e) {
+    'click .paidToggle': e => {
 
             $(e.target).html('Waiting...');
 
@@ -1143,7 +1143,7 @@ Template.paymentConfirmationFrontPage.events({
 
                     if (Roles.userIsInRole(Meteor.user(), ['admin', 'wechat', 'staff'])) {
 
-                        Payments.insert(paymentObject, function(error, result) {
+                        Payments.insert(paymentObject, (error, result) => {
 
                             if (result) {
                                 console.log('text');
@@ -1158,7 +1158,7 @@ Template.paymentConfirmationFrontPage.events({
                                         }
                                     },
 
-                                    function(error, result) {
+                                    (error, result) => {
                                         if (result) {
                                             console.log('Payment was successful');
                                             $(e.target).html('Toggle Paid/Unpaid');
@@ -1190,7 +1190,7 @@ Template.paymentConfirmationFrontPage.events({
                             paymentID: '',
                             paymentMethod: ''
                         }
-                    }, function(error, result) {
+                    }, (error, result) => {
 
                         if (result) {
                             console.log(currRunner);
@@ -1221,7 +1221,7 @@ Template.paymentConfirmationFrontPage.events({
 
 Template.unpaidRunnerEmailList.helpers({
 
-    unpaidRunner: function() {
+    unpaidRunner: () => {
 
         return Runners.find({
             runnerHasPaid: 'false'
@@ -1233,7 +1233,7 @@ Template.unpaidRunnerEmailList.helpers({
 });
 
 Template.registrationSorted5K.helpers({
-    runners: function() {
+    runners: () => {
         return Runners.find({
             runnerRaceSelected: "5K Dragon Run",
             runnerHasPaid: 'true'
@@ -1243,7 +1243,7 @@ Template.registrationSorted5K.helpers({
             }
         });
     },
-    runnerAgeGroup: function() {
+    runnerAgeGroup: () => {
 
         var runnerAgeValue = this.runnerAge;
         if (runnerAgeValue == '1') {
@@ -1262,7 +1262,7 @@ Template.registrationSorted5K.helpers({
 
 });
 Template.registrationSorted1K.helpers({
-    runners: function() {
+    runners: () => {
         return Runners.find({
             runnerRaceSelected: "1K Fun Run",
             runnerHasPaid: 'true'
@@ -1272,7 +1272,7 @@ Template.registrationSorted1K.helpers({
             }
         });
     },
-    runnerAgeGroup: function() {
+    runnerAgeGroup: () => {
 
         var runnerAgeValue = this.runnerAge;
         if (runnerAgeValue == '1') {
@@ -1293,7 +1293,7 @@ Template.registrationSorted1K.helpers({
 
 Template.paymentRecordWeChat.helpers({
 
-    WeChatPayment: function() {
+    WeChatPayment: () => {
 
         return Payments.find({
             paymentMethod: 'WeChat'
@@ -1304,12 +1304,12 @@ Template.paymentRecordWeChat.helpers({
         });
 
     },
-    WeChatID: function() {
+    WeChatID: () => {
         return this.wechatUser;
 
     },
 
-    totalCollected: function() {
+    totalCollected: () => {
 
         var fee = 0;
         Payments.find({
@@ -1318,7 +1318,7 @@ Template.paymentRecordWeChat.helpers({
             sort: {
                 paymentDateEntered: -1
             }
-        }).forEach(function(p) {
+        }).forEach((p) => {
 
             fee += p.paymentAmount;
 
@@ -1332,7 +1332,7 @@ Template.paymentRecordWeChat.helpers({
 
 
 
-var getNewRegistrationInfo = function() {
+var getNewRegistrationInfo = () => {
 
     registrationObject = {
 
@@ -1376,7 +1376,7 @@ var getNewRegistrationInfo = function() {
 
 };
 
-UI.registerHelper('registrationDeadlineText', function() {
+UI.registerHelper('registrationDeadlineText', () => {
 
     return systemVariables.findOne({
         name: 'registrationDeadlineText'
@@ -1385,7 +1385,7 @@ UI.registerHelper('registrationDeadlineText', function() {
 
 });
 
-UI.registerHelper('raceCharityName', function() {
+UI.registerHelper('raceCharityName', () => {
 
     return systemVariables.findOne({
         name: 'raceCharityName'
@@ -1394,7 +1394,7 @@ UI.registerHelper('raceCharityName', function() {
 
 });
 
-UI.registerHelper('raceDateText', function() {
+UI.registerHelper('raceDateText', () => {
 
     return systemVariables.findOne({
         name: 'raceDateText'
@@ -1403,7 +1403,7 @@ UI.registerHelper('raceDateText', function() {
 
 });
 
-UI.registerHelper('registrationOpenDate', function() {
+UI.registerHelper('registrationOpenDate', () => {
 
     return systemVariables.findOne({
         name: 'registrationOpenDate'
@@ -1412,7 +1412,7 @@ UI.registerHelper('registrationOpenDate', function() {
 
 });
 
-UI.registerHelper('paymentDeadline', function() {
+UI.registerHelper('paymentDeadline', () => {
 
     return systemVariables.findOne({
         name: 'paymentDeadline'
@@ -1421,7 +1421,7 @@ UI.registerHelper('paymentDeadline', function() {
 
 });
 
-UI.registerHelper('registrationFee', function() {
+UI.registerHelper('registrationFee', () => {
 
     return systemVariables.findOne({
         name: 'registrationFee'
@@ -1430,7 +1430,7 @@ UI.registerHelper('registrationFee', function() {
 
 });
 
-UI.registerHelper('showRunnerNumber', function() {
+UI.registerHelper('showRunnerNumber', () => {
 
     return systemVariables.findOne({
         name: 'showRunnerNumber'
@@ -1438,7 +1438,7 @@ UI.registerHelper('showRunnerNumber', function() {
 
 });
 
-UI.registerHelper('needVolunteers', function() {
+UI.registerHelper('needVolunteers', () => {
 
     return systemVariables.findOne({
         name: 'needVolunteers'
@@ -1447,7 +1447,7 @@ UI.registerHelper('needVolunteers', function() {
 
 });
 
-UI.registerHelper('registrationOpen', function() {
+UI.registerHelper('registrationOpen', () => {
 
     return systemVariables.findOne({
         name: 'registrationOpen'
@@ -1457,23 +1457,23 @@ UI.registerHelper('registrationOpen', function() {
 });
 
 
-UI.registerHelper('isWaiting', function() {
+UI.registerHelper('isWaiting', () => {
 
     return AccountsTemplates.disabled();
 
 
 });
 
-Accounts.onLogin(function() {
+Accounts.onLogin(() => {
 
     Router.go('/portal/')
 });
 
 Template.eventConfiguration.events({
-    'click #submitEventSettings': function(e, t) {
+    'click #submitEventSettings': (e, t) => {
         e.preventDefault();
         var forms = t.$('.form-control');
-        forms.each(function(n, el) {
+        forms.each((n, el) => {
             if ($(el).attr('type') == 'text') {
                 setEventConfiguration($(el).attr('name'), $(el).val());
             } else {
@@ -1488,13 +1488,13 @@ Template.eventConfiguration.events({
 
 });
 
-Template.pickupPage.onRendered(function() {
+Template.pickupPage.onRendered(() => {
 
     Session.set('pickupSearchObject', {});
     var emails = [];
     Runners.find({
         runnerHasPaid: true
-    }).forEach(function(r) {
+    }).forEach(r => {
         if (!_.contains(emails, r.registrationEmail)) {
             emails.push(r.registrationEmail);
         }
@@ -1502,7 +1502,7 @@ Template.pickupPage.onRendered(function() {
     var lastNames = [];
     Runners.find({
         runnerHasPaid: true
-    }).forEach(function(r) {
+    }).forEach(r => {
         if (!_.contains(lastNames, r.runnerLastName)) {
             lastNames.push(r.runnerLastName);
         }
@@ -1512,7 +1512,7 @@ Template.pickupPage.onRendered(function() {
     $("#searchPickupByEmail").autocomplete({
         minLength: 2,
         source: emails,
-        select: function(e, ui) {
+        select: (e, ui) => {
 
             currentEmail = ui.item.value;
 
@@ -1530,7 +1530,7 @@ Template.pickupPage.onRendered(function() {
     $("#searchPickupByName").autocomplete({
         minLength: 2,
         source: lastNames,
-        select: function(e, ui) {
+        select: (e, ui) => {
 
             currentName = ui.item.value;
 
@@ -1550,7 +1550,7 @@ Template.pickupPage.onRendered(function() {
 Template.pickupPage.events({
 
 
-    'keydown #searchPickupByEmail': function(e) {
+    'keydown #searchPickupByEmail': e => {
 
         if (e.keyCode == '13') {
             e.stopPropagation();
@@ -1558,7 +1558,7 @@ Template.pickupPage.events({
         }
 
     },
-    'focus #searchPickupByEmail, #searchPickupByName': function(e) {
+    'focus #searchPickupByEmail, #searchPickupByName': e => {
 
         $('#searchPickupByEmail').val('');
         $('#searchPickupByName').val('');
@@ -1573,7 +1573,7 @@ Template.pickupPage.events({
 
 Template.pickupPage.helpers({
 
-    searchObject: function() {
+    searchObject: () => {
 
 
         return Session.get('pickupSearchObject');
@@ -1581,47 +1581,47 @@ Template.pickupPage.helpers({
 
     },
 
-    retrievedRecords: function() {
+    retrievedRecords: () => {
 
         var searchObject = Session.get('pickupSearchObject');
         return Runners.find(searchObject);
 
     },
 
-    num110: function() {
+    num110: () => {
         return getPickupSearchRecords('110');
     },
-    num120: function() {
+    num120: () => {
         return getPickupSearchRecords('120');
     },
-    num130: function() {
+    num130: () => {
         return getPickupSearchRecords('130');
     },
-    numXS: function() {
+    numXS: () => {
         return getPickupSearchRecords('XS');
     },
-    numS: function() {
+    numS: () => {
         return getPickupSearchRecords('S');
     },
-    numM: function() {
+    numM: () => {
         return getPickupSearchRecords('M');
     },
-    numL: function() {
+    numL: () => {
         return getPickupSearchRecords('L');
     },
-    numXL: function() {
+    numXL: () => {
 
         return getPickupSearchRecords('XL');
     },
 
-    numXXL: function() {
+    numXXL: () => {
         return getPickupSearchRecords('XXL');
     },
 
 
 });
 
-function getPickupSearchRecords(size) {
+var getPickupSearchRecords = (size) => {
     var searchObject = Session.get('pickupSearchObject');
     searchObject['runnerHasPaid'] = true;
     searchObject['runnerShirtSize'] = size;
@@ -1631,7 +1631,7 @@ function getPickupSearchRecords(size) {
 
 }
 
-function setEventConfiguration(propName, value) {
+var setEventConfiguration = (propName, value) => {
 
     var propID = systemVariables.findOne({
         name: propName
@@ -1657,7 +1657,7 @@ function setEventConfiguration(propName, value) {
 }
 
 
-function getRegistrationFee() {
+getRegistrationFee = () => {
 
     var age = Session.get('selectedAge');
     if (age == "1") {
@@ -1669,7 +1669,7 @@ function getRegistrationFee() {
 
 
 }
-var generateRaceCode = function() {
+var generateRaceCode = () => {
     var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
     a = Math.floor(10 * Math.random()).toString();
@@ -1681,7 +1681,7 @@ var generateRaceCode = function() {
 
 };
 
-var sendConfirmationEmail = function(name, email, registrationCode, id) {
+var sendConfirmationEmail = (name, email, registrationCode, id) => {
 
     var emailString = "Dear " + name + ",\n Thank you for submitting your information through the Dragon Run/ Fun Run website. \n\n Your registration is not complete. You must print out your form and bring it in to the HIS office, along with your registration fee. \n\n You can access the link to your form at: \n http://dragonrun.meteor.com/registrationConfirmation/" + id + "/" + registrationCode + "/  \n\n Please email eweinberg@scischina.org for any questions about registration. \n\nThanks! \n\n Evan\n Dragon Run Registration Team";
 
@@ -1697,7 +1697,7 @@ var sendConfirmationEmail = function(name, email, registrationCode, id) {
 
 };
 
-sendRunnerNumberEmail = function(name, email, number, id) {
+sendRunnerNumberEmail = (name, email, number, id) => {
 
     var sendRunnerNumberEmailString = "Dear " + name + ",\nWe hope you are excited about the Dragon Run/Fun Run this Saturday. On behalf of the committee, I want to thank you for participating.\n\n Your official runner number for this year's event is " + number + ". \n\nYou will be able to pick up your registration bag on Saturday between 7:00 and 7:30 AM. The race will start promptly at 8:00 AM.\n\n The bags will be given out according to this runner number, so please have it available when you arrive on Saturday. We will also have lists available for looking up your number if you forget.\n\nSee you on Saturday! \n\n Evan\n Dragon Run Registration Team";
 

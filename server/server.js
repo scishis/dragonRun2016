@@ -41,7 +41,7 @@ Meteor.startup(() => {
 });
 
 
-Meteor.publish('runners', function(publishLimit, options) {
+Meteor.publish('runners', (publishLimit, options) => {
     if (this.userId) {
         var currentUser = Meteor.users.findOne({
             _id: this.userId
@@ -62,13 +62,13 @@ Meteor.publish('runners', function(publishLimit, options) {
     return null;
 });
 
-Meteor.publish('systemVariables', function() {
+Meteor.publish('systemVariables', () => {
 
     return systemVariables.find();
 
 });
 
-Meteor.publish('payments', function() {
+Meteor.publish('payments', () => {
     if (this.userId) {
         var currentUser = Meteor.users.findOne({
             _id: this.userId
@@ -83,7 +83,7 @@ Meteor.publish('payments', function() {
 
 });
 
-Meteor.publish('users', function() {
+Meteor.publish('users', () => {
     if (this.userId) {
         var currentUser = Meteor.users.findOne({
             _id: this.userId
@@ -99,7 +99,7 @@ Meteor.publish('users', function() {
 });
 
 
-Meteor.publish('racerunners', function() {
+Meteor.publish('racerunners', () => {
 
     return RaceRunners.find();
 
@@ -109,7 +109,7 @@ Meteor.publish('racerunners', function() {
 
 Meteor.methods({
 
-    sendEmail: function(to, from, subject, text) {
+    sendEmail: (to, from, subject, text) => {
         check([to, from, subject, text], [String]);
 
         if (Roles.userIsInRole(this.userId, ['admin'])) {
@@ -129,7 +129,7 @@ Meteor.methods({
     },
 
 
-    startRace: function() {
+    startRace: () => {
         this.unblock();
         var startTimeObject = {
             name: "raceStartTime",
@@ -151,7 +151,7 @@ Meteor.methods({
         });
 
     },
-    stopRace: function() {
+    stopRace: () => {
         this.unblock();
         var startTimeObject = {
             name: "raceStartTime",
@@ -173,7 +173,7 @@ Meteor.methods({
 
 
     },
-    sendVerifyEmail: function(userId) {
+    sendVerifyEmail: (userId) => {
         this.unblock();
 
         var email = Meteor.users.findOne({
@@ -185,7 +185,7 @@ Meteor.methods({
 
 
     },
-    download: function() {
+    download: () => {
         if (Roles.userIsInRole(this.userId, ['admin', 'staff'])) {
             var collection = Runners.find().fetch();
 
@@ -201,17 +201,17 @@ Meteor.methods({
 });
 
 Runners.allow({
-    update: function() {
+    update: () => {
 
         return Meteor.user();
 
     },
-    remove: function() {
+    remove: () => {
 
         return Meteor.user();
 
     },
-    insert: function() {
+    insert: () => {
 
         return Meteor.user();
 
@@ -219,7 +219,7 @@ Runners.allow({
 });
 
 Runners.deny({
-    update: function(userId, post, fieldNames) {
+    update: (userId, post, fieldNames) => {
         // may only edit the following two fields:
         if (_.contains(fieldNames, 'runnerHasPaid')) {
 
@@ -239,17 +239,17 @@ Runners.deny({
 });
 
 Payments.allow({
-    update: function(userId, doc, fieldNames, modifier) {
+    update: (userId, doc, fieldNames, modifier) => {
 
         return Roles.userIsInRole(userId, ['staff', 'admin']);
 
     },
-    remove: function(userId, doc) {
+    remove: (userId, doc) => {
 
         return Roles.userIsInRole(userId, ['staff', 'admin']);
 
     },
-    insert: function(userId, doc) {
+    insert: (userId, doc) => {
 
         return Roles.userIsInRole(userId, ['staff', 'admin']);
 
@@ -260,17 +260,17 @@ Payments.allow({
 });
 
 RaceRunners.allow({
-    update: function(userId, doc, fieldNames, modifier) {
+    update: (userId, doc, fieldNames, modifier) => {
 
         return Roles.userIsInRole(userId, ['staff', 'admin']);
 
     },
-    remove: function(userId, doc) {
+    remove: (userId, doc) => {
 
         return Roles.userIsInRole(userId, ['staff', 'admin']);
 
     },
-    insert: function(userId, doc) {
+    insert: (userId, doc) => {
 
         return Roles.userIsInRole(userId, ['staff', 'admin']);
 
@@ -280,17 +280,17 @@ RaceRunners.allow({
 });
 
 systemVariables.allow({
-    update: function() {
+    update: () => {
 
         return true;
 
     },
-    remove: function() {
+    remove: () => {
 
         return true;
 
     },
-    insert: function() {
+    insert: () => {
 
         return true;
 
@@ -299,7 +299,7 @@ systemVariables.allow({
 });
 
 
-Accounts.onCreateUser(function(options, user) {
+Accounts.onCreateUser((options, user) => {
     user.roles = ['race-runner'];
     return user;
 });
@@ -310,27 +310,27 @@ Accounts.emailTemplates.siteName = "HIS Dragon Run Registration";
 Accounts.emailTemplates.from = "HIS Dragon Run Registration Robot <registration-robot@hisdragonrun.org>";
 
 Accounts.emailTemplates.resetPassword = {
-    subject: function(user) {
+    subject: (user) => {
         return "Reset your password on http://register.hisdragonrun.org";
     },
-    text: function(user, url) {
+    text: (user, url) => {
         return "Hello! Click the link below to reset your Dragon Run registration password. \n" + url + " If you didn't request this email, please ignore it. Do not reply to this email - it was sent by a robot! \n \n  "
     },
-    html: function(user, url) {
+    html: (user, url) => {
         // This is where HTML email content would go.
         // See the section about html emails below.
     }
 };
 
 Accounts.emailTemplates.verifyEmail = {
-    subject: function(user) {
+    subject: (user) => {
         return "Verify Account for " + user.emails[0].address;
     },
-    text: function(user, url) {
+    text: (user, url) => {
         return "Hello! Click the link below to verify your new account for the HIS Charity Dragon Run Website.\n大家好！点击下面的链接，为5公里赛跑验证您的新帐户。\n" + url + " \n If you didn't request this email, please ignore it. \n 如果您不想参与，请忽略这份邮件。\n  Do not reply to this email - it was sent by a robot! \n 请不要直接回复邮件，这是系统自动发送的。"
 
     },
-    html: function(user, url) {
+    html: (user, url) => {
         // This is where HTML email content would go.
         // See the section about html emails below.
     }
