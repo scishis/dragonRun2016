@@ -1,4 +1,4 @@
-Meteor.startup(function() {
+Meteor.startup(() => {
     // code to run on server at startup
     var numOfUsers = Meteor.users.find().count();
     if (numOfUsers == 0) {
