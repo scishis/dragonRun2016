@@ -49,8 +49,7 @@ Template.raceConfiguration.events({
         if ($('#confirmStartRace').val() == '1') {
             Meteor.call('startRace');
 
-        }
-        else {
+        } else {
             alert('Confirm what you are doing!');
         }
 
@@ -87,14 +86,12 @@ Template.raceConfiguration.helpers({
         seconds = Math.floor(((elapsedTime / 60000) - Math.floor(elapsedTime / 60000)) * 60);
         if (seconds <= 9) {
             var secondString = '0' + seconds.toFixed(0).toString();
-        }
-        else {
+        } else {
             var secondString = seconds.toFixed(0).toString();
         }
         if (minutes < 9) {
             var minuteString = '0' + minutes.toString();
-        }
-        else {
+        } else {
             var minuteString = minutes.toString();
         }
         return {
@@ -125,14 +122,12 @@ Template.officialRaceTime.helpers({
         seconds = Math.floor(((elapsedTime / 60000) - Math.floor(elapsedTime / 60000)) * 60);
         if (seconds <= 9) {
             var secondString = '0' + seconds.toFixed(0).toString()
-        }
-        else {
+        } else {
             var secondString = seconds.toFixed(0).toString();
         }
         if (minutes < 9) {
             var minuteString = '0' + minutes.toString();
-        }
-        else {
+        } else {
             var minuteString = minutes.toString();
         }
         return {
@@ -153,8 +148,7 @@ Template.smallRaceTime.helpers({
 
         if (Meteor.status().status == 'connected') {
             return "green";
-        }
-        else {
+        } else {
             return "red";
         }
 
@@ -178,14 +172,12 @@ function raceTime() {
     seconds = Math.floor(((elapsedTime / 60000) - Math.floor(elapsedTime / 60000)) * 60)
     if (seconds <= 9) {
         var secondString = '0' + seconds.toFixed(0).toString()
-    }
-    else {
+    } else {
         var secondString = seconds.toFixed(0).toString();
     }
     if (minutes < 9) {
         var minuteString = '0' + minutes.toString()
-    }
-    else {
+    } else {
         var minuteString = minutes.toString();
     }
     return {
@@ -202,14 +194,12 @@ function stopTimeString() {
     seconds = Math.floor(((elapsedTime / 60000) - Math.floor(elapsedTime / 60000)) * 60)
     if (seconds <= 9) {
         var secondString = '0' + seconds.toFixed(0).toString()
-    }
-    else {
+    } else {
         var secondString = seconds.toFixed(0).toString();
     }
     if (minutes < 9) {
         var minuteString = '0' + minutes.toString()
-    }
-    else {
+    } else {
         var minuteString = minutes.toString();
     }
     return minuteString + ":" + secondString;

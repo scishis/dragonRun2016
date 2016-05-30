@@ -1,386 +1,309 @@
 /* CSS declarations go here */
 
-
-
-headerBar{
-
+headerBar {
     height: 40px;
     background-color: #003f87;
-    margin:0px;
-
-
-}
-#header{
-
-    margin:5px;
-
+    margin: 0px;
 }
 
-body{
-
- font-family:"Avenir","Helvetica";
- background-repeat:no-repeat;
- background-position:center top;
- background-size:cover;
- margin-left:auto;
- margin-right:auto;
- width:100%;
- z-index:-1;
-  color:  #003f87;
- font-size:20px;
- background-color:#003f87;
+#header {
+    margin: 5px;
 }
 
-#selectLang{
-
- width:50px;
-
-}
-
-table{
-
- border: 1px black solid;
-
-
-
-}
-
-tr{
- border: 1px black solid;
-
-}
-td{
- border: 1px black solid;
- text-align:center;
-
-}
-.centerText{
-
- text-align:center;
-
-
-}
-.HISGold{
-    color: #FCDC3B;
-
-}
-.HISBlue{
+body {
+    font-family: "Avenir", "Helvetica";
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    z-index: -1;
     color: #003f87;
-    opacity:1 ;
-
+    font-size: 20px;
+    background-color: #003f87;
 }
 
-
-
-.HISGoldSolid{
-
-  background-color:#FCDC3B;
-
+#selectLang {
+    width: 50px;
 }
 
-.HISBlueSolid{
-
-  background-color:#003f87;
-  color:#FCDC3B
+table {
+    border: 1px black solid;
 }
 
-.gray-bg{
-
- background-color:#ccc;
- margin:10px;
- border-radius:5px;
- padding:10px;
-
+tr {
+    border: 1px black solid;
 }
 
-.outline{
-
- border: #003f87 2px solid;
- border-radius:5px;
- margin: 3px;
+td {
+    border: 1px black solid;
+    text-align: center;
 }
 
-#registrationList{
-
- 
-
- margin: 5px;
- padding:10px;
-
+.centerText {
+    text-align: center;
 }
 
-#paymentList{
-
- background-color:gray;
-
- margin: 5px;
- padding:10px;
-
+.HISGold {
+    color: #FCDC3B;
 }
 
-#sponsor-image{
-
- margin-left:auto;
- margin-right:auto;
-
+.HISBlue {
+    color: #003f87;
+    opacity: 1;
 }
 
-#runnerRegistrationSummary{
-
-width:50%;
-margin-left:auto;
-margin-right:auto;
-background-color:#FCDC3B;
-color:#003f87;
-padding:30px;
-font-size: 20px;
-text-align: center;
-
-
+.HISGoldSolid {
+    background-color: #FCDC3B;
 }
 
-.btn{
-
- background-color:#FCDC3B;
-
+.HISBlueSolid {
+    background-color: #003f87;
+    color: #FCDC3B
 }
 
-#sign-out{
-
- margin-bottom:0px;
-
+.gray-bg {
+    background-color: #ccc;
+    margin: 10px;
+    border-radius: 5px;
+    padding: 10px;
 }
 
-.btn:hover{
-
- background-color:#003f87;
- color: #FCDC3B;
-
+.outline {
+    border: #003f87 2px solid;
+    border-radius: 5px;
+    margin: 3px;
 }
 
-#confirmStartRace{
-width:200px;
-
-}
-#raceConfiguration{
-background:white;
-margin:20px;
-padding:20px;
-
-}
-.resultsList{
-
- background:#FCDC3B;
- color:#003f87;
- padding:10px;
- width:50%;
- font-size:20px;
- margin-left:auto;
- margin-right:auto;
-
-}
-.resultsTable{
-    width:100%;
+#registrationList {
+    margin: 5px;
+    padding: 10px;
 }
 
-#officialRaceTime{
- background:#FCDC3B;
- color: #003f87;
- margin-top:120px;
- font-size:50px;
- z-index:10;
-}
-#officialRaceTimeBlock{
-
- font-size: 450px;
- margin-top:-100px;
- margin-left:auto;
- margin-right:auto;
-
-
-
+#paymentList {
+    background-color: gray;
+    margin: 5px;
+    padding: 10px;
 }
 
-#smallRaceTimeBlock{
- background:#FCDC3B;
- color: #003f87;
- font-size: 32px;
- margin-left:auto;
- margin-right:auto;
- width:40%;
-
+#sponsor-image {
+    margin-left: auto;
+    margin-right: auto;
 }
 
-#connectionIndicator{
-
-border-radius:5px;
-width:10px;
-
-height:10px;
-margin-left:10px;
-display:inline;
-
+#runnerRegistrationSummary {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #FCDC3B;
+    color: #003f87;
+    padding: 30px;
+    font-size: 20px;
+    text-align: center;
 }
 
-#flaggingRunners{
- background:#FCDC3B;
- color:#003f87;
- width:60%;
-
- margin-left:auto;
- margin-right:auto;
- border-radius:5px;
- padding:10px;
-
-
-
+.btn {
+    background-color: #FCDC3B;
 }
 
-#flaggingRunnersRight{
- background:#FCDC3B;
- color:#003f87;
- width:45%;
- float:right;
- margin-left:auto;
- margin-right:20px;
- border-radius:5px;
- padding:10px;
-
-}
-#flaggingRunnersLeft{
-background:#FCDC3B;
- color:#003f87;
- width:45%;
- float:left;
- margin-left:20px;
- margin-right:auto;
- border-radius:5px;
- padding:10px;
-
-
-
+#sign-out {
+    margin-bottom: 0px;
 }
 
-.estimatedTimeTable{
-
- width:150px;
-vertical-align: top;
-
+.btn:hover {
+    background-color: #003f87;
+    color: #FCDC3B;
 }
 
-#flaggingRunnersInput{
-height:100px;
-font-size: 40px;
-width:200px;
-
-
-}
-#flaggingRunnersButton{
-width:100px;
-font-size:20px;
-margin:10px;
-
-
+#confirmStartRace {
+    width: 200px;
 }
 
-#flaggedRunnersList{
-
- width:40%;
- margin-left:auto;
- margin-right:auto;
-
-
+#raceConfiguration {
+    background: white;
+    margin: 20px;
+    padding: 20px;
 }
 
-.flaggedRunnersButton{
-
- background-color:#FCDC3B;
- border: solid 2px #003f87;
- font-size:100px;
- height:120px;
-margin-left:auto;
-margin-right:auto;
-border-radius:5px;
-margin-top:30px;
-
-}
-.flaggedRunnersButton:hover{
-
- background-color:#003f87;
- border: solid 2px #FCDC3B;
- color: #FCDC3B;
- font-size:100px;
- height:120px;
-margin-left:auto;
-margin-right:auto;
-border-radius:5px;
-
-}
-.tone{
-
- display:none;
-
-}
-#loading{
- background-color:#003f87;
- width:50%;
- margin-left:auto;
- margin-right:auto;
- color: #FCDC3B;
-}
-#loggingIn{
- background-color:#FCDC3B;
- width:50%;
- margin-left:auto;
- margin-right:auto;
- color: #003f87;
+.resultsList {
+    background: #FCDC3B;
+    color: #003f87;
+    padding: 10px;
+    width: 50%;
+    font-size: 20px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-#resultsMainPage{
- background:#FCDC3B;
- color:#003f87;
- width:50%;
- margin-left:auto;
- margin-right:auto;
- border-radius:5px;
- padding:10px;
+.resultsTable {
+    width: 100%;
+}
 
+#officialRaceTime {
+    background: #FCDC3B;
+    color: #003f87;
+    margin-top: 120px;
+    font-size: 50px;
+    z-index: 10;
+}
 
+#officialRaceTimeBlock {
+    font-size: 450px;
+    margin-top: -100px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
+#smallRaceTimeBlock {
+    background: #FCDC3B;
+    color: #003f87;
+    font-size: 32px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
+
+#connectionIndicator {
+    border-radius: 5px;
+    width: 10px;
+    height: 10px;
+    margin-left: 10px;
+    display: inline;
+}
+
+#flaggingRunners {
+    background: #FCDC3B;
+    color: #003f87;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#flaggingRunnersRight {
+    background: #FCDC3B;
+    color: #003f87;
+    width: 45%;
+    float: right;
+    margin-left: auto;
+    margin-right: 20px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#flaggingRunnersLeft {
+    background: #FCDC3B;
+    color: #003f87;
+    width: 45%;
+    float: left;
+    margin-left: 20px;
+    margin-right: auto;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.estimatedTimeTable {
+    width: 150px;
+    vertical-align: top;
+}
+
+#flaggingRunnersInput {
+    height: 100px;
+    font-size: 40px;
+    width: 200px;
+}
+
+#flaggingRunnersButton {
+    width: 100px;
+    font-size: 20px;
+    margin: 10px;
+}
+
+#flaggedRunnersList {
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.flaggedRunnersButton {
+    background-color: #FCDC3B;
+    border: solid 2px #003f87;
+    font-size: 100px;
+    height: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    margin-top: 30px;
+}
+
+.flaggedRunnersButton:hover {
+    background-color: #003f87;
+    border: solid 2px #FCDC3B;
+    color: #FCDC3B;
+    font-size: 100px;
+    height: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+}
+
+.tone {
+    display: none;
+}
+
+#loading {
+    background-color: #003f87;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    color: #FCDC3B;
+}
+
+#loggingIn {
+    background-color: #FCDC3B;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    color: #003f87;
+}
+
+#resultsMainPage {
+    background: #FCDC3B;
+    color: #003f87;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    padding: 10px;
 }
 
 .navbar-default .navbar-text {
     color: #003f87;
 }
 
-
-.navbar-default{
-
- border: 0px solid #FCDC3B;
- border-radius:0px;
+.navbar-default {
+    border: 0px solid #FCDC3B;
+    border-radius: 0px;
 }
 
-.navbar-default .navbar-brand,
-.navbar-default a{
-color: #003f87;
+.navbar-default .navbar-brand, .navbar-default a {
+    color: #003f87;
 }
 
-.navbar-nav > .active{
- background-color: #003f87;
- color: #FCDC3B;
-
+.navbar-nav > .active {
+    background-color: #003f87;
+    color: #FCDC3B;
 }
 
-.navbar-default .navbar-nav > .active > a,
-.navbar-default .navbar-nav > .active > a:hover,
-.navbar-default .navbar-nav > .active > a:focus {
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
     color: #FCDC3B;
     background-color: #003f87;
 }
 
-
 @media (max-width: 375px) {
-body {
-      width: 90%;
-     }
+    body {
+        width: 90%;
+    }
 }
